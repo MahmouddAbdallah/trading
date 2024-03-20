@@ -6,7 +6,7 @@ const Vissions = () => {
             <div className='p-[1px] rounded-[60px] bg-gradient-to-l from-black/50 to-white'>
                 <div className="lg:px-5 rounded-[60px] bg-bgColor">
                     <div className='relative h-20 sm:h-48 md:h-56 lg:h-60 flex justify-center'>
-                        <div className='absolute px-5  -top-24 sm:-top-32 md:-top-40'>
+                        <div className='absolute px-5 -top-24 sm:-top-32 md:-top-40'>
                             <img src={hero} className='rounded-3xl card-services' alt="" />
                         </div>
                     </div>
@@ -17,7 +17,7 @@ const Vissions = () => {
                             </h3>
                             <BlueLine />
                         </div>
-                        <div className='grid grid-cols-12 gap-10 lg:gap-20 py-10 lg:py-20 lg:px-20'>
+                        <div className='grid grid-cols-12 gap-5 lg:gap-10 xl:gap-20 py-10 lg:py-20 lg:px-20'>
                             <div className='col-span-12 lg:col-span-6 px-8'>
                                 <p className='text-center text-blueText/70'>
                                     Our vision at Momentum for Education, Trading, and Marketing is to be a leading global provider of comprehensive educational resources, advanced trading tools, and impactful marketing solutions. We aspire to create a community where individuals can learn, grow, and succeed together, driving positive change in the financial industry and beyond.

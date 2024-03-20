@@ -1,9 +1,13 @@
 import hero from '../assets/WhyTrading.png'
+import WhySection from '../assets/WhySection.png'
 import BlueLine from './BlueLine'
 const WhyTrading = () => {
     return (
-        <section className="p-container py-20">
-            <div className="card-services px-5 py-10 rounded-xl">
+        <section className="p-container py-20 relative ">
+            <div className='absolute -z-10 left-0 -top-44'>
+                <img src={WhySection} className='w-28' alt="" />
+            </div>
+            <div className="card-services px-5 py-10 rounded-xl bg-bgColor">
                 <div className="flex flex-col gap-5 items-center text-center xl:px-60">
                     <h3 className='font-Raleway font-semibold text-4xl md:text-5xl lg:text-5xl text-blueText '>
                         WHY Trading Business Academy

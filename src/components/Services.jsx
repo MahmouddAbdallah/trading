@@ -29,7 +29,7 @@ const Services = () => {
             <div className='xl:px-10'>
                 <ul className='flex flex-wrap sm:grid grid-cols-6 gap-40 sm:gap-20 lg:gap-24 xl:gap-28'>
                     {services.map(item => (
-                        <li key={item.img} className=' sm:col-span-3 xl:col-span-2'>
+                        <li key={item.img} className=' sm:col-span-3 xl:col-span-2 bg-bgColor'>
                             <div className='border py-20 px-5 shadow-lg rounded-xl flex flex-col items-center relative card-services'>
                                 <div className='absolute -top-24'>
                                     <img className='w-44' src={item.img} alt="" />

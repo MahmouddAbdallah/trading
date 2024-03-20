@@ -15,7 +15,7 @@ const Navbar = () => {
     ]
     return (
         <nav className='pt-5 lg:pt-10'>
-            <div className='flex items-center justify-between border-[3px] border-white px-5 lg:px-10 py-2 lg:py-3 rounded-full shadow-lg nav-gradient'>
+            <div className={`flex items-center justify-between border-[3px] border-white px-5 lg:px-10 py-2 lg:py-3 rounded-full nav-gradient ${style.shadowNav}`}>
                 <div className="w-28">
                     <img src={logo} className="w-20 lg:w-24" alt="" />
                 </div>
@@ -32,7 +32,7 @@ const Navbar = () => {
                     ))}
                 </ul>
                 <div>
-                    <Link to={'/sign-in'} className='hidden md:block btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md'>
+                    <Link to={'/sign-in'} className={`hidden md:block btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base ${style.shadowBtn}`}>
                         REGISTER NOW
                     </Link>
                 </div>

@@ -19,7 +19,7 @@ const Header = () => {
                             optio, eaque rerum!
                         </p>
                         <div>
-                            <Link to={'/sign-in'} className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md'>
+                            <Link to={'/sign-in'} className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md shadowBtn'>
                                 REGISTER NOW
                             </Link>
                         </div>
