@@ -29,3 +29,9 @@ body {
 .inputStyle{
     @apply py-2 px-2 bg-inputColor border card-services rounded-full w-full placeholder:text-inputPlaceholder placeholder:font-semibold outline-none
 }
+.inputStyleDisable{
+    @apply py-2 px-2 disabled:bg-inputColor/5 border disabled:border-black/20 rounded-full w-full disabled:placeholder:text-black/30 placeholder:font-semibold
+}
+.selectStyleDisable{
+    @apply py-2 px-2 disabled:bg-inputColor/5 border disabled:border-black/20 rounded-full w-full disabled:text-black/30 font-semibold
+}

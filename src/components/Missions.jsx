@@ -2,7 +2,7 @@ import hero from '../assets/Vissions.png'
 import BlueLine from './BlueLine'
 const Missions = () => {
     return (
-        <section className="p-container py-20">
+        <section className="p-container py-10">
             <div className='p-[1px] rounded-[60px] bg-gradient-to-l from-black/50 to-white'>
                 <div className="lg:px-5 py-10 rounded-[60px] bg-bgColor">
                     <div>

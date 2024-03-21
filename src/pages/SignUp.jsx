@@ -5,6 +5,9 @@ import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import OptionCountries from '../components/OptionCountries'
 import toast from 'react-hot-toast'
+import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom'
+import { LoadingIcon } from '../components/icons'
 
 const SignUp = () => {
     const { register, setValue, formState: { errors }, handleSubmit } = useForm();
@@ -12,6 +15,9 @@ const SignUp = () => {
     const [error, setError] = useState(false)
     const [sponser, setSponser] = useState(null)
     const [open, setOpen] = useState(false)
+    const [able, setAble] = useState(false)
+    const [loading, setLoading] = useState(false)
+    // const navigate = useNavigate()
 
     const searchSponser = useCallback(async () => {
         try {
@@ -20,6 +26,8 @@ const SignUp = () => {
             setOpen(true)
         } catch (error) {
             toast.error(error?.response?.data || 'There is an Error')
+            setSponser(null)
+            setOpen(false)
             console.error(error);
         }
     }, [sponserId])
@@ -31,10 +39,27 @@ const SignUp = () => {
     }, [searchSponser, sponserId?.length])
 
     const onSubmit = handleSubmit(async (formData) => {
-        if (formData.sponserId) {
-            console.log(formData);
-        } else {
-            setError(true)
+        try {
+            if (formData.sponserId) {
+                setLoading(true)
+                const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/User/NewSignup`, {
+                    name: formData.firstName + ' ' + formData.lastName,
+                    phoneNumber: formData.phone,
+                    countryId: formData.country,
+                    nationalId: formData.Id,
+                    email: formData.email,
+                    sponsorId: formData.sponserId
+                })
+                console.log(data);
+                setLoading(false)
+                toast.success('User signed up successfully!')
+                // navigate("/")
+            } else {
+                setError(true)
+            }
+        } catch (error) {
+            toast.error(error?.response?.data || 'There is an Error')
+            console.error(error);
         }
     })
 
@@ -56,28 +81,31 @@ const SignUp = () => {
                                         <input
                                             type="text"
                                             value={sponserId}
-                                            disabled={sponser}
+                                            disabled={open == false && sponser}
+                                            className={clsx(
+                                                'inputStyle',
+                                                { 'text-black/40 font-bold': sponser }
+                                            )}
                                             onChange={(e) => {
                                                 setSponserId(e.target.value)
                                                 setError(false)
                                             }}
-                                            className={`inputStyle ${sponser && " text-black/50 font-bold"}`}
                                             placeholder='Sponser ID'
                                         />
                                         <div className='relative'>
                                             {
                                                 (open) &&
                                                 <div className='absolute w-full'>
-                                                    <div className='bg-white w-full z-10 py-5 px-5 rounded-xl'>
+                                                    <div className='bg-white w-full z-10 py-5 rounded-xl'>
                                                         <button
                                                             onClick={(e) => {
                                                                 e.preventDefault()
-                                                                setSponserId(sponser?.name)
-                                                                setValue('sponserId', sponserId)
+                                                                setValue('sponserId', sponser?.customerAttributeId)
                                                                 setSponser(true)
                                                                 setOpen(false)
+                                                                setAble(true)
                                                             }}
-                                                            className='flex flex-col'>
+                                                            className='flex flex-col w-full px-5'>
                                                             <span className='font-semibold'>{sponser?.name}</span>
                                                             <span className='text-xs block text-black/20'>{sponser?.phone}</span>
                                                         </button>
@@ -92,7 +120,11 @@ const SignUp = () => {
                                     <input
                                         type="email"
                                         {...register("email", { required: "Email is required." })}
-                                        className='inputStyle'
+                                        disabled={!able}
+                                        className={clsx(
+                                            { 'inputStyle': able },
+                                            { 'inputStyleDisable': !able }
+                                        )}
                                         placeholder='Email' />
                                     <ErrorMsg message={errors?.email?.message} />
                                 </div>
@@ -101,8 +133,12 @@ const SignUp = () => {
                                 <div className='w-full'>
                                     <input
                                         type="text"
-                                        {...register("sponserName", { required: "Sponser name is required." })}
-                                        className='inputStyle'
+                                        disabled={sponser || !able}
+                                        className={clsx(
+                                            { 'inputStyle disabled:text-black/40 disabled:font-bold': able },
+                                            { 'inputStyleDisable': !able }
+                                        )}
+                                        value={sponser?.name}
                                         placeholder='Your Sponser Name' />
                                     <ErrorMsg message={errors?.sponserName?.message} />
                                 </div>
@@ -110,7 +146,11 @@ const SignUp = () => {
                                     <input
                                         type="text"
                                         {...register("phone", { required: "The phone is required." })}
-                                        className='inputStyle'
+                                        disabled={!able}
+                                        className={clsx(
+                                            { 'inputStyle': able },
+                                            { 'inputStyleDisable': !able }
+                                        )}
                                         placeholder='Phone Number ' />
                                     <ErrorMsg message={errors?.phone?.message} />
                                 </div>
@@ -120,7 +160,11 @@ const SignUp = () => {
                                     <input
                                         type="text"
                                         {...register("firstName", { required: "First name is required." })}
-                                        className='inputStyle'
+                                        disabled={!able}
+                                        className={clsx(
+                                            { 'inputStyle': able },
+                                            { 'inputStyleDisable': !able }
+                                        )}
                                         placeholder='First Name' />
                                     <ErrorMsg message={errors?.firstName?.message} />
                                 </div>
@@ -128,7 +172,11 @@ const SignUp = () => {
                                     <select
                                         type="text"
                                         {...register("country", { required: "Your country is required." })}
-                                        className='py-2 px-2 bg-inputColor border card-services rounded-full w-full text-inputPlaceholder font-semibold outline-none'
+                                        disabled={!able}
+                                        className={clsx(
+                                            { 'py-2 px-2 bg-inputColor border card-services rounded-full w-full text-black/50 font-semibold outline-none': able },
+                                            { 'selectStyleDisable': !able }
+                                        )}
                                     >
                                         <OptionCountries />
                                     </select>
@@ -140,7 +188,11 @@ const SignUp = () => {
                                     <input
                                         type="text"
                                         {...register("lastName", { required: "Last name is required." })}
-                                        className='inputStyle'
+                                        disabled={!able}
+                                        className={clsx(
+                                            { 'inputStyle': able },
+                                            { 'inputStyleDisable': !able }
+                                        )}
                                         placeholder='Last Name' />
                                     <ErrorMsg message={errors?.lastName?.message} />
                                 </div>
@@ -148,15 +200,24 @@ const SignUp = () => {
                                     <input
                                         type="text"
                                         {...register("Id", { required: "Your ID is required." })}
-                                        className='inputStyle'
+                                        disabled={!able}
+                                        className={clsx(
+                                            { 'inputStyle': able },
+                                            { 'inputStyleDisable': !able }
+                                        )}
                                         placeholder='Your ID' />
                                     <ErrorMsg message={errors?.Id?.message} />
                                 </div>
                             </div>
                         </div>
                         <div className='flex justify-center my-3'>
-                            <button className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-lg'>
-                                SIGN UP
+                            <button
+                                disabled={!able}
+                                className={
+                                    clsx({ 'btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-lg': able },
+                                        { 'bg-blue-300 px-10 py-2 rounded-full text-white text-sm lg:text-base': !able })
+                                }>
+                                {loading ? <LoadingIcon className='animate-spin' /> : 'SIGN UP'}
                             </button>
                         </div>
                     </form>

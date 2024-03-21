@@ -1,26 +1,39 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import hero from '../assets/SignIn.png'
 import { useForm } from 'react-hook-form'
 import ErrorMsg from '../components/ErrorMsg'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useState } from 'react'
+import { LoadingIcon } from '../components/icons'
+import clsx from 'clsx'
 
 const SingIn = () => {
-
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm()
+    const token = localStorage.getItem('token')
+
     const onSubmit = handleSubmit(async (formData) => {
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/User/login`, {
-                email: formData.email,
+            setLoading(true)
+            const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/User/authenticate`, {
+                username: formData.email,
                 password: formData.password
             })
-            console.log(data);
+            toast.success('User signed in successfully!')
+            localStorage.setItem('token', data.token.token)
+            navigate("/")
+            window.location.reload()
         } catch (error) {
             toast.error(error?.response?.data || 'There is an Error')
             console.error(error);
         }
     })
 
+    if (token) {
+        return <Navigate to={'/'} />
+    }
     return (
         <div className='p-container h-screen'>
             <div className="grid grid-cols-12 gap-0 lg:gap-20 h-full">
@@ -63,8 +76,12 @@ const SingIn = () => {
                                     Forgot your password?
                                 </span>
                             </div>
-                            <button className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-lg'>
-                                SIGN IN
+                            <button disabled={loading} className={clsx(
+                                'px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-lg',
+                                { 'btn-blue-gradient': !loading },
+                                { 'bg-[#4d92b2]/70': loading }
+                            )}>
+                                {loading ? <LoadingIcon className='animate-spin w-6 h-6' /> : 'SIGN IN'}
                             </button>
                         </div>
                     </form>
