@@ -1,6 +1,6 @@
 import Navbar from "./Navbar/Navbar"
-import hero from '../assets/hero.png'
 import { Link } from "react-router-dom"
+import HeaderLeft from "./HeaderLeft/HeaderLeft"
 
 const Header = () => {
     return (
@@ -27,8 +27,8 @@ const Header = () => {
                 </div>
                 <div className="col-span-6 flex justify-center lg:block py-20 lg:pt-0">
                     <div className="relative">
-                        <div className="lg:absolute lg:-right-64">
-                            <img className="w-[572px]" src={hero} alt="" />
+                        <div className="lg:absolute lg:-right-64 w-[585px]">
+                            <HeaderLeft />
                         </div>
                     </div>
                 </div>

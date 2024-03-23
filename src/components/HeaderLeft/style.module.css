@@ -1,0 +1,107 @@
+.yellowChart{
+    animation: yellow-chart 12s infinite ease-in-out;
+}
+
+@keyframes  yellow-chart  {
+    0%{
+        transform: rotate(-280deg);
+    }
+    10%{
+        transform: rotate(-280deg);
+    }
+    60%{
+        transform: rotate(0deg);
+    }
+    80%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-280deg);
+    }
+}
+.greenChart{
+    animation: green-chart 12s infinite ease-in-out;
+}
+
+@keyframes  green-chart  {
+    0%{
+        transform: rotate(-210deg);
+    }
+    10%{
+        transform: rotate(-210deg);
+    }
+    60%{
+        transform: rotate(0deg);
+    }
+    80%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-210deg);
+    }
+}
+.purpleChart{
+    animation: purple-chart 12s infinite ease-in-out;
+}
+
+@keyframes  purple-chart  {
+    0%{
+        transform: rotate(-145deg);
+    }
+    10%{
+        transform: rotate(-145deg);
+    }
+    60%{
+        transform: rotate(0deg);
+    }
+    80%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-145deg);
+    }
+}
+
+.redChart{
+    animation: red-chart 12s infinite ease-in-out;
+}
+
+@keyframes  red-chart  {
+    0%{
+        transform: rotate(-80deg);
+    }
+    10%{
+        transform: rotate(-80deg);
+    }
+    60%{
+        transform: rotate(0deg);
+    }
+    80%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-80deg);
+    }
+}
+
+.scrollNumber{
+    animation: scroll-number 12s infinite ease-in-out;
+}
+
+@keyframes  scroll-number {
+    0%{
+        transform: translateY(0);
+    }
+    10%{
+        transform: translateY(0);
+    }
+    60%{
+        transform: translateY(-7325px);
+    }
+    80%{
+        transform: translateY(-7325px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}

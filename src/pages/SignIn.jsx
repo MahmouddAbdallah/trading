@@ -25,6 +25,7 @@ const SingIn = () => {
             localStorage.setItem('token', data.token.token)
             navigate("/")
             window.location.reload()
+            console.log(data);
         } catch (error) {
             toast.error(error?.response?.data || 'There is an Error')
             console.error(error);

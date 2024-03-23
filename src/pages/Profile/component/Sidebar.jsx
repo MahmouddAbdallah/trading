@@ -33,9 +33,11 @@ const Sidebar = () => {
     ]
     return (
         <div className="p-4 flex flex-col h-screen shadow-lg shadow-black/30 bg-[#EBEFF3]">
-            <div>
-                <img src={logo} alt="logo of trading acadmey." />
-            </div>
+            <Link to={'/'}>
+                <div>
+                    <img src={logo} alt="logo of trading acadmey." />
+                </div>
+            </Link>
             <div className='flex-1 flex items-center'>
                 <div className='space-y-5'>
                     {
@@ -44,7 +46,7 @@ const Sidebar = () => {
                                 <Link to={item.herf} >
                                     <div className={`flex items-center gap-5 py-5 shadow-lg px-8 rounded-md ${style.sidebarBtnShadow}`}>
                                         {item.icon}
-                                        <span className='text-[#003966] font-bold'>
+                                        <span className='text-[#003966] font-bold whitespace-nowrap'>
                                             {item.name}
                                         </span>
                                         <ArrowIcon className={'stroke-[#003966]'} />
