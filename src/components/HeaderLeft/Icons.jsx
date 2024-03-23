@@ -21,7 +21,7 @@ ChartGreen.propTypes = {
 }
 export const ChartPurple = ({ className }) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="301" height="301" viewBox="0 0 301 301" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="300" height="300" viewBox="0 0 300 300" fill="none">
             <mask id="mask0_21_1438" maskUnits="userSpaceOnUse" x="-59" y="-59" width="420" height="420">
                 <path d="M272.196 239.016C265.363 248.42 257.46 256.999 248.646 264.578L150.844 150.848L272.196 239.016Z" fill="#EBEBEB" stroke="#EBEBEB" strokeWidth="0.5" />
                 <path d="M293.502 197.198C288.638 212.168 281.448 226.279 272.196 239.014L150.843 150.846L293.502 197.198Z" fill="#EBEBEB" stroke="#EBEBEB" strokeWidth="0.5" />
@@ -40,7 +40,7 @@ ChartPurple.propTypes = {
 }
 export const ChartYellow = ({ className }) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="301" height="301" viewBox="0 0 301 301" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="300" height="300" viewBox="0 0 300 300" fill="none">
             <mask id="mask0_21_1395" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="-59" y="-59" width="420" height="420">
                 <path d="M8.19116 197.199C3.32712 182.229 0.849637 166.587 0.84964 150.846L150.85 150.846L8.19116 197.199Z" fill="#EBEBEB" stroke="#EBEBEB" strokeWidth="0.5" />
                 <path d="M29.496 239.014C20.2441 226.28 13.0541 212.169 8.19011 197.199L150.849 150.846L29.496 239.014Z" fill="#EBEBEB" stroke="#EBEBEB" strokeWidth="0.5" />
@@ -58,7 +58,7 @@ ChartYellow.propTypes = {
 }
 export const ChartRed = ({ className }) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="301" height="301" viewBox="0 0 301 301" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="300" height="300" viewBox="0 0 300 300" fill="none">
             <mask id="mask0_21_1489" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="-59" y="-59" width="420" height="420">
                 <path d="M197.198 293.51C182.228 298.375 166.586 300.852 150.845 300.852L150.845 150.852L197.198 293.51Z" fill="#EBEBEB" stroke="#EBEBEB" strokeWidth="0.5" />
                 <path d="M239.014 272.201C226.28 281.453 212.169 288.643 197.199 293.507L150.846 150.849L239.014 272.201Z" fill="#EBEBEB" stroke="#EBEBEB" strokeWidth="0.5" />

@@ -33,7 +33,7 @@ const Navbar = () => {
                 </ul>
                 <div>
                     <Link to={'/sign-in'} className={`hidden md:block btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base ${style.shadowBtn}`}>
-                        REGISTER NOW
+                        Log In
                     </Link>
                 </div>
                 <button onClick={() => {
@@ -66,7 +66,7 @@ const Navbar = () => {
                         </ul>
                         <div>
                             <Link to={'/sign-in'} className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md'>
-                                REGISTER NOW
+                                Log In
                             </Link>
                         </div>
                     </div>

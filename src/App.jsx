@@ -7,7 +7,7 @@ const SignUp = lazy(() => import('./pages/SignUp'))
 const SignIn = lazy(() => import('./pages/SignIn'))
 const NotFound = lazy(() => import('./pages/NotFound'));
 const LayoutProfile = lazy(() => import('./pages/Profile/LayoutProfile'))
-const Profile = lazy(() => import('./pages/Profile/Profile'));
+const Dashboard = lazy(() => import('./pages/Profile/Dashboard'));
 
 function App() {
   return (
@@ -18,8 +18,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/profile' element={<LayoutProfile />} >
-            <Route path='/profile' element={<Profile />} />
+          <Route path='/p' element={<LayoutProfile />} >
+            <Route path='/p/dashboard' element={<Dashboard />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

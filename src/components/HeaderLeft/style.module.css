@@ -87,7 +87,6 @@
 .scrollNumber{
     animation: scroll-number 12s infinite ease-in-out;
 }
-
 @keyframes  scroll-number {
     0%{
         transform: translateY(0);
@@ -96,12 +95,31 @@
         transform: translateY(0);
     }
     60%{
-        transform: translateY(-7325px);
+        transform: translateY(-5844px);
     }
     80%{
-        transform: translateY(-7325px);
+        transform: translateY(-5844px);
     }
     100%{
         transform: translateY(0px);
+    }
+}
+@media (min-width: 768px) {
+    @keyframes  scroll-number {
+        0%{
+            transform: translateY(0);
+        }
+        10%{
+            transform: translateY(0);
+        }
+        60%{
+            transform: translateY(-7610px);
+        }
+        80%{
+            transform: translateY(-7610px);
+        }
+        100%{
+            transform: translateY(0);
+        }
     }
 }

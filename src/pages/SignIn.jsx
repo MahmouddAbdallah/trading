@@ -23,7 +23,8 @@ const SingIn = () => {
             })
             toast.success('User signed in successfully!')
             localStorage.setItem('token', data.token.token)
-            navigate("/")
+            localStorage.setItem('user', JSON.stringify(data))
+            navigate("/p/dashboard")
             window.location.reload()
             console.log(data);
         } catch (error) {

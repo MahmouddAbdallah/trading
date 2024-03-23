@@ -20,14 +20,14 @@ const Header = () => {
                         </p>
                         <div>
                             <Link to={'/sign-in'} className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md shadowBtn'>
-                                REGISTER NOW
+                                Log In
                             </Link>
                         </div>
                     </div>
                 </div>
                 <div className="col-span-6 flex justify-center lg:block py-20 lg:pt-0">
                     <div className="relative">
-                        <div className="lg:absolute lg:-right-64 w-[585px]">
+                        <div className="lg:absolute lg:-right-64 w-[400px] md:w-[585px]">
                             <HeaderLeft />
                         </div>
                     </div>
