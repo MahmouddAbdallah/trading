@@ -1,7 +1,7 @@
+import { UseAppContext } from "../../../context/appContext"
 
 const Navbar = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
+    const { user } = UseAppContext()
     return (
         <nav>
             <div className="w-full flex justify-end p-container py-5">

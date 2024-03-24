@@ -35,3 +35,11 @@ body {
 .selectStyleDisable{
     @apply py-2 px-2 disabled:bg-inputColor/5 border disabled:border-black/20 rounded-full w-full disabled:text-black/30 font-semibold
 }
+.logout{
+    background: linear-gradient(180deg, rgba(66,139,173,1) 0%, rgba(77,146,178,1) 80%, rgba(70,141,175,1) 100%);
+}
+@media (min-width: 768px) {
+    .logout {
+        background: #ffffff;
+    }
+}
