@@ -1,11 +1,14 @@
+import PropTypes from 'prop-types'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../../../assets/Logo.png'
 import { ArrowIcon, BusinessIcon, HomeIcon, OrdersIcon, ReportIcon, WalletIcon } from '../../../components/icons'
 import style from '../style.module.css'
 import clsx from 'clsx'
+import useClickOutside from '../../../hooks/useClickOutSide'
 
-const Sidebar = () => {
-    const { pathname } = useLocation()
+const Sidebar = ({ open, setOpen }) => {
+    const { pathname } = useLocation();
+    const refSidebar = useClickOutside(() => setOpen(false))
     const items = [
         {
             icon: <HomeIcon className={
@@ -19,7 +22,7 @@ const Sidebar = () => {
         {
             icon: <BusinessIcon className={
                 pathname?.includes('business')
-                    ? 'fill-white'
+                    ? 'stroke-white fiill'
                     : 'fill-[#003966]'}
             />,
             name: 'My Business',
@@ -52,9 +55,10 @@ const Sidebar = () => {
             herf: 'wallet',
         },
     ]
+    console.log(open);
     return (
-        <div className="p-4 flex flex-col h-screen shadow-lg shadow-black/30 bg-[#EBEFF3] sticky top-0">
-            <Link to={'/'}>
+        <div ref={refSidebar} className={`p-4 flex flex-col h-screen shadow-lg shadow-black/30 bg-[#EBEFF3] fixed z-50 lg:sticky top-0 ${open ? style.leftToRight : style.rightToLeft} `}>
+            <Link to={'/'} className='w-fit'>
                 <div>
                     <img src={logo} alt="logo of trading acadmey." />
                 </div>
@@ -86,6 +90,12 @@ const Sidebar = () => {
             </div>
         </div>
     )
+}
+
+
+Sidebar.propTypes = {
+    open: PropTypes.bool,
+    setOpen: PropTypes.func
 }
 
 export default Sidebar

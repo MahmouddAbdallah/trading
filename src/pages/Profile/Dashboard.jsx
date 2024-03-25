@@ -40,13 +40,13 @@ const Dashboard = () => {
         },
     ];
     return (
-        <div className="w-full">
-            <div className="flex flex-wrap gap-32">
-                <div className='bg-[#EBEFF3] px-2 shadow rounded-md w-fit shadowBtn'>
+        <div className="w-full px-5 md:px-10 lg:px-0">
+            <div className="flex flex-wrap gap-14 lg:gap-32">
+                <div className='bg-[#EBEFF3] px-2 shadow rounded-md w-full lg:w-fit shadowBtn'>
                     <div className="py-4">
                         <span className="font-bold text-xl text-[#003966]">Direct Sells</span>
                     </div>
-                    <div className='h-60 w-[450px]'>
+                    <div className='h-60 w-full lg:w-[450px]'>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart width={300} height={100} data={data}>
                                 <XAxis dataKey={'name'} style={{ fontSize: "16px", fontWeight: "700", }} />
@@ -58,11 +58,11 @@ const Dashboard = () => {
                         </ResponsiveContainer>
                     </div>
                 </div>
-                <div className='bg-[#EBEFF3] px-2 shadow rounded-md w-fit shadowBtn'>
+                <div className='bg-[#EBEFF3] px-2 shadow rounded-md w-full lg:w-fit shadowBtn'>
                     <div className="py-4">
                         <span className="font-bold text-xl text-[#003966]">Direct Sells</span>
                     </div>
-                    <div className='h-60 w-[450px]'>
+                    <div className='h-60 w-full lg:w-[450px]'>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart width={300} height={100} data={data}>
                                 <XAxis dataKey={'name'} style={{ fontSize: "16px", fontWeight: "700", }} />

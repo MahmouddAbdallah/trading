@@ -53,7 +53,7 @@ const Navbar = () => {
                                 <div className='absolute top-12 bg-white rounded-lg z-50'>
                                     <ul>
                                         <li >
-                                            <Link className='block px-5 py-2 text-sm border-b'>
+                                            <Link to={'p/dashboard'} className='block px-5 py-2 text-sm border-b'>
                                                 Dashboard
                                             </Link>
                                         </li>

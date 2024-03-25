@@ -1,3 +1,38 @@
 .sidebarBtnShadow{
     box-shadow: 3px 3px 10px #00000045, -8px -8px 8px white
 }
+
+@media (max-width:  1024px) {
+    .leftToRight {
+        display: flex;
+        animation: anim-left-right .5s ease-in-out;
+    }
+    .rightToLeft {
+        display: none;
+        animation: anim-right-left .5s ease-in-out;
+    }
+}
+
+@keyframes anim-left-right {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0%;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 100%;
+    }
+}
+
+@keyframes anim-right-left {
+    0% {
+        transform: translateX(0);
+        display: flex;
+        opacity: 100%;
+    }
+    100% {
+        transform: translateX(-100%);
+        display: none;
+        opacity: 0%;
+    }
+}
