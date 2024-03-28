@@ -12,7 +12,7 @@ const Navbar = ({ setOpen }) => {
                         <MenuIcon className={'w-7 h-7'} />
                     </button>
                 </div>
-                <div className="flex gap-3">
+                {user ? <div className="flex gap-3">
                     <div>
                         <span className="block text-sm"> basic account</span>
                         <span className="block font-semibold"> {user?.name}</span>
@@ -20,7 +20,7 @@ const Navbar = ({ setOpen }) => {
                     <div className="bg-red-500 flex justify-center items-center w-10 h-10 rounded-full font-bold text-white">
                         {user?.name?.split('')[0]}
                     </div>
-                </div>
+                </div> : ""}
             </div>
         </nav>
     )

@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import hero from '../assets/SignIn.png'
 import { useForm } from 'react-hook-form'
 import ErrorMsg from '../components/ErrorMsg'
@@ -12,7 +12,7 @@ const SingIn = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
 
     const onSubmit = handleSubmit(async (formData) => {
         try {
@@ -33,9 +33,9 @@ const SingIn = () => {
         }
     })
 
-    if (token) {
-        return <Navigate to={'/'} />
-    }
+    // if (token) {
+    //     return <Navigate to={'/'} />
+    // }
     return (
         <div className='p-container h-screen'>
             <div className="grid grid-cols-12 gap-0 lg:gap-20 h-full">

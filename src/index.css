@@ -21,7 +21,7 @@ body {
     background: linear-gradient(93deg, rgba(232,234,241,1) 0%, rgba(235,236,240,1) 100%);
 }
 .card-services{
-    box-shadow: 3px 3px 10px #00000057, -10px -10px 10px white
+    box-shadow: 3px 3px 10px #00000057, -10px -10px 10px white;
 }
 .shadowBtn{
     box-shadow: 8px 8px 5px #0000001b, -8px -8px 5px white

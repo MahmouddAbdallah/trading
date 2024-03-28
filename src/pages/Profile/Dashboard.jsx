@@ -1,5 +1,6 @@
 import { Tooltip } from "bootstrap"
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis } from "recharts"
+import SampleChart from "./component/Pie";
 
 const Dashboard = () => {
     const data = [
@@ -41,6 +42,9 @@ const Dashboard = () => {
     ];
     return (
         <div className="w-full px-5 md:px-10 lg:px-0">
+            <div className='mb-16'>
+                <SampleChart />
+            </div>
             <div className="flex flex-wrap gap-14 lg:gap-32">
                 <div className='bg-[#EBEFF3] px-2 shadow rounded-md w-full lg:w-fit shadowBtn'>
                     <div className="py-4">
