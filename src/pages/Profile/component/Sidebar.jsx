@@ -68,7 +68,7 @@ const Sidebar = ({ open, setOpen }) => {
                     {
                         items.map(item => (
                             <div key={item.herf}>
-                                <Link to={item.herf} >
+                                <Link onClick={() => setOpen(false)} to={item.herf} >
                                     <div className={`flex items-center gap-5 py-5 shadow-lg px-8 rounded-md ${style.sidebarBtnShadow} ${pathname?.includes(item.herf) && 'bg-[#428BAD] text-white'}`}>
                                         {item.icon}
                                         <span className={clsx(

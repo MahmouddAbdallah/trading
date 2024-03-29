@@ -28,7 +28,8 @@ const SingIn = () => {
             window.location.reload()
             console.log(data);
         } catch (error) {
-            toast.error(error?.response?.data || 'There is an Error')
+            toast.error(error?.response?.data?.message || 'There is an Error')
+            setLoading(false)
             console.error(error);
         }
     })

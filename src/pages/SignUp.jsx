@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react'
 import OptionCountries from '../components/OptionCountries'
 import toast from 'react-hot-toast'
 import clsx from 'clsx';
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { LoadingIcon } from '../components/icons'
 
 const SignUp = () => {
@@ -58,7 +58,8 @@ const SignUp = () => {
                 setError(true)
             }
         } catch (error) {
-            toast.error(error?.response?.data || 'There is an Error')
+            toast.error(error?.response?.data?.message || 'There is an Error')
+            setLoading(false)
             console.error(error);
         }
     })

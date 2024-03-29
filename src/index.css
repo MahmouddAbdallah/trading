@@ -26,6 +26,16 @@ body {
 .shadowBtn{
     box-shadow: 8px 8px 5px #0000001b, -8px -8px 5px white
 }
+.blackWhiteShadow{
+    box-shadow: 3px 3px 10px #00000045, -8px -8px 8px white
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+}
 .inputStyle{
     @apply py-2 px-2 bg-inputColor border card-services rounded-full w-full placeholder:text-inputPlaceholder placeholder:font-semibold outline-none
 }

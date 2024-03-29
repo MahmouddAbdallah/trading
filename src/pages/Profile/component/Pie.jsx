@@ -1,4 +1,4 @@
-import { Pie, PieChart, Cell, Label } from "recharts";
+import { Pie, PieChart, Cell, Label, Tooltip } from "recharts";
 
 const data = [
     { name: "Bubble Tea Sold", value: 80 },
@@ -13,6 +13,7 @@ const SampleChart = () => {
                     <span className="font-bold text-xl text-[#003966]">Sells</span>
                 </div>
                 <PieChart width={200} height={200}>
+                    <Tooltip />
                     <Pie data={data}
                         paddingAngle={0}
                         fillOpacity={50} dataKey="value"
