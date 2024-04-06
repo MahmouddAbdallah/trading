@@ -36,8 +36,14 @@ body {
     -ms-overflow-style: none; 
     scrollbar-width: none;  
 }
+.innerShadow{
+    box-shadow: inset 6px 6px 10px 0 #00000010, inset -6px -6px 10px 0 #ffffff83;
+}
 .inputStyle{
     @apply py-2 px-2 bg-inputColor border card-services rounded-full w-full placeholder:text-inputPlaceholder placeholder:font-semibold outline-none
+}
+.inputInnerStyle{
+    @apply py-3 px-3 bg-inputColor border innerShadow rounded-full w-full placeholder:text-inputPlaceholder placeholder:font-semibold outline-none
 }
 .inputStyleDisable{
     @apply py-2 px-2 disabled:bg-inputColor/5 border disabled:border-black/20 rounded-full w-full disabled:placeholder:text-black/30 placeholder:font-semibold
