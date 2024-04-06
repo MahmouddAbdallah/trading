@@ -24,10 +24,10 @@ const AnimateCounter = () => {
                 <div className='relative'>
                     <div className='absolute left-[1px] top-[1px] md:left-2 md:top-2'>
                         <div className='relative'>
-                            <ChartYellow className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[10px] left-[10px]  ${style.yellowChart}`} />
-                            <ChartGreen className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[12px] left-[12px] ${style.greenChart}`} />
-                            <ChartRed className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[9px] left-[12px] md:top-[11px] md:left-[11px] ${style.redChart}`} />
-                            <ChartPurple className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[11.5px] left-[12.5px] md:top-[10.9px] md:left-[10.9px] ${style.purpleChart}`} />
+                            <ChartYellow className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[11px] left-[10px] md:top-[12px] md:left-[12px]  ${style.yellowChart}`} />
+                            <ChartGreen className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[12.6px] left-[12.6px] md:top-[12px] md:left-[12px] ${style.greenChart}`} />
+                            <ChartRed className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[9px] left-[12.4px] md:top-[12px] md:left-[12px] ${style.redChart}`} />
+                            <ChartPurple className={`absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-[11.5px] left-[13.8px] md:top-[12px] md:left-[12px] ${style.purpleChart}`} />
                             <ChartCircle className={`absolute w-[224px] h-[221px] md:w-[324px] md:h-[324px]`} />
                         </div>
                     </div>

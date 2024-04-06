@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Loading from './components/Loading'
 import AppProvider from './context/appContext'
+const Services = lazy(() => import('./pages/Services/Services'))
+const LayoutPages = lazy(() => import('./LayoutPages'))
 const Home = lazy(() => import('./pages/Home'))
 const SignUp = lazy(() => import('./pages/SignUp'))
 const SignIn = lazy(() => import('./pages/SignIn'))
@@ -18,7 +20,10 @@ function App() {
         <Router>
           <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<LayoutPages />} >
+              <Route path='/' index element={<Home />} />
+              <Route path='/services' element={<Services />} />
+            </Route>
             <Route path='/sign-in' element={<SignIn />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/p' element={<LayoutProfile />} >

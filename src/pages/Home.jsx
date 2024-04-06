@@ -1,5 +1,4 @@
 import { lazy, Suspense } from 'react'
-import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Missions from '../components/Missions'
 import Services from '../components/Services'
@@ -18,7 +17,6 @@ const Home = () => {
                 <Slider />
             </Suspense>
             <Missions />
-            <Footer />
         </>
     )
 }

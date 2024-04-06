@@ -1,11 +1,9 @@
-import Navbar from "./Navbar/Navbar"
 import { Link } from "react-router-dom"
 import HeaderLeft from "./HeaderLeft/HeaderLeft"
 
 const Header = () => {
     return (
         <header className="p-container overflow-hidden lg:pb-60">
-            <Navbar />
             <div className=" flex flex-col lg:grid grid-cols-12">
                 <div className="col-span-12 lg:col-span-6 pt-20">
                     <div className="space-y-4">

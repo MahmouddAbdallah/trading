@@ -23,7 +23,7 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className='pt-5 lg:pt-10'>
+        <nav className='pt-5 lg:pt-10 p-container'>
             <div className={`flex items-center justify-between border-[3px] border-white px-5 lg:px-10 py-2 lg:py-3 rounded-full nav-gradient ${style.shadowNav}`}>
                 <div className="w-28">
                     <img src={logo} className="w-20 lg:w-24" alt="" />
