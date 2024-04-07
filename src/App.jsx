@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 import Loading from './components/Loading'
 import AppProvider from './context/appContext'
 const Home = lazy(() => import('./pages/Home'))
+const About = lazy(() => import('./pages/About'))
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'))
 const Services = lazy(() => import('./pages/Services/Services'))
 const LayoutPages = lazy(() => import('./LayoutPages'))
@@ -28,6 +29,7 @@ function App() {
               <Route path='/' index element={<Home />} />
               <Route path='/services' element={<Services />} />
               <Route path='/contact' element={<ContactUs />} />
+              <Route path='/about' element={<About />} />
             </Route>
             <Route path='/sign-in' element={<SignIn />} />
             <Route path='/sign-up' element={<SignUp />} />

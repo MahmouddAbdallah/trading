@@ -43,10 +43,10 @@
 .page-services-card.active .description p{
     display: block;
     position: absolute;
-    right: -180px;
+    right: -165px;
 }
 .page-services-card.active .description h4 {
-    font-size:45px;
+    font-size:35px;
     line-height: 1;
 }
 
