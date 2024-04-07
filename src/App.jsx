@@ -11,8 +11,11 @@ const SignUp = lazy(() => import('./pages/SignUp'))
 const SignIn = lazy(() => import('./pages/SignIn'))
 const NotFound = lazy(() => import('./pages/NotFound'));
 const LayoutProfile = lazy(() => import('./pages/Profile/LayoutProfile'))
-const Dashboard = lazy(() => import('./pages/Profile/Dashboard'));
-const Business = lazy(() => import('./pages/Profile/Business'));
+const Dashboard = lazy(() => import('./pages/Profile/Dashboard/Dashboard'));
+const Transfer = lazy(() => import('./pages/Profile/Dashboard/Transfer'));
+const HoldingTank = lazy(() => import('./pages/Profile/Dashboard/HoldingTank'));
+const EwalletAccountHistory = lazy(() => import('./pages/Profile/Business/EwalletAccountHistory'));
+const CommissionsHistory = lazy(() => import('./pages/Profile/Business/CommissionsHistory'));
 
 function App() {
   return (
@@ -30,7 +33,10 @@ function App() {
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/p' element={<LayoutProfile />} >
               <Route path='/p/dashboard' element={<Dashboard />} />
-              <Route path='/p/business' element={<Business />} />
+              <Route path='/p/dashboard/transfer' element={<Transfer />} />
+              <Route path='/p/dashboard/holding-tank' element={<HoldingTank />} />
+              <Route path='/p/business/ewallet-account-history' element={<EwalletAccountHistory />} />
+              <Route path='/p/business/commissions-history' element={<CommissionsHistory />} />
             </Route>
             <Route path='*' element={<NotFound />} />
           </Routes>

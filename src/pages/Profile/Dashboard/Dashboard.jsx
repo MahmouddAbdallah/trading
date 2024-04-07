@@ -1,5 +1,5 @@
 import { CartesianGrid, Line, Tooltip, LineChart, ResponsiveContainer, XAxis } from "recharts"
-import SampleChart from "./component/Pie";
+import SampleChart from "../component/Pie";
 
 const Dashboard = () => {
     const data = [
@@ -49,7 +49,7 @@ const Dashboard = () => {
                     <div className="py-4">
                         <span className="font-bold text-xl text-[#003966]">Direct Sells</span>
                     </div>
-                    <div className='h-60 w-full lg:w-[450px]'>
+                    <div className='h-60 w-full lg:w-[420px]'>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart width={300} height={100} data={data}>
                                 <XAxis dataKey={'name'} style={{ fontSize: "16px", fontWeight: "700", }} />
@@ -64,7 +64,7 @@ const Dashboard = () => {
                     <div className="py-4">
                         <span className="font-bold text-xl text-[#003966]">Direct Sells</span>
                     </div>
-                    <div className='h-60 w-full lg:w-[450px]'>
+                    <div className='h-60 w-full lg:w-[420px]'>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart width={300} height={100} data={data}>
                                 <XAxis dataKey={'name'} style={{ fontSize: "16px", fontWeight: "700", }} />

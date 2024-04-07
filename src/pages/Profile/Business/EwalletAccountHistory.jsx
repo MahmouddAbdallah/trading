@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
-import TableData from './component/TableData'
+import TableData from '../component/TableData'
 
-const Bussiness = () => {
+const EwalletAccountHistory = () => {
     return (
         <div className="w-full px-5 md:px-10 lg:pl-0 lg:pr-10">
             <div>
@@ -104,4 +104,4 @@ CardUser.propTypes = {
 
 
 
-export default Bussiness
+export default EwalletAccountHistory

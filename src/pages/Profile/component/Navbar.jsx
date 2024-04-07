@@ -1,14 +1,18 @@
 import { MenuIcon } from "../../../components/icons"
 import { UseAppContext } from "../../../context/appContext"
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom'
+
 
 const Navbar = ({ setOpen }) => {
-    const { user } = UseAppContext()
+    const { user } = UseAppContext();
+    const { pathname } = useLocation();
+
     return (
         <nav>
             <div className="w-full flex justify-between items-center p-container py-5">
                 <div>
-                    <button onClick={() => { setOpen(true) }} className="block lg:hidden">
+                    <button onClick={() => { setOpen({ bool: true, href: pathname?.split("/")[2] }) }} className="block lg:hidden">
                         <MenuIcon className={'w-7 h-7'} />
                     </button>
                 </div>
