@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react'
 import OptionCountries from '../components/OptionCountries'
 import toast from 'react-hot-toast'
 import clsx from 'clsx';
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { LoadingIcon } from '../components/icons'
 
 const SignUp = () => {
@@ -17,11 +17,11 @@ const SignUp = () => {
     const [open, setOpen] = useState(false)
     const [able, setAble] = useState(false)
     const [loading, setLoading] = useState(false)
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const searchSponser = useCallback(async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/User/${sponserId}`)
+            const { data } = await axios.get(`/api/User/${sponserId}`)
             setSponser(data)
             setOpen(true)
         } catch (error) {
@@ -42,7 +42,7 @@ const SignUp = () => {
         try {
             if (formData.sponserId) {
                 setLoading(true)
-                const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/User/NewSignup`, {
+                const { data } = await axios.post(`/api/User/NewSignup`, {
                     name: formData.firstName + ' ' + formData.lastName,
                     phoneNumber: formData.phone,
                     countryId: formData.country,
@@ -53,7 +53,7 @@ const SignUp = () => {
                 console.log(data);
                 setLoading(false)
                 toast.success('User signed up successfully!')
-                // navigate("/")
+                navigate("/sign-in")
             } else {
                 setError(true)
             }

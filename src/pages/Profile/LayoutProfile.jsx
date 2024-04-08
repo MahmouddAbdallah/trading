@@ -7,11 +7,8 @@ const LayoutProfile = () => {
     const { pathname } = useLocation();
     const [open, setOpen] = useState({
         bool: false,
-        href: pathname.includes('business') ?
-            pathname?.split("/")[2] + "/" + pathname?.split("/")[3]
-            : null
+        href: pathname?.replace(/^\/p\//, '')
     });
-    console.log(open);
     return (
         <div className='flex gap-5 md:gap-10 lg:gap-20'>
             <Sidebar open={open} setOpen={setOpen} />

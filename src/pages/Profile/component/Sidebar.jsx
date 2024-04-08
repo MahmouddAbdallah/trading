@@ -4,11 +4,29 @@ import logo from '../../../assets/Logo.png'
 import { ArrowIcon, BusinessIcon, HomeIcon, OrdersIcon, ReportIcon, WalletIcon } from '../../../components/icons'
 import style from '../style.module.css'
 import clsx from 'clsx'
-import useClickOutside from '../../../hooks/useClickOutSide'
+
+import { useEffect, useState } from 'react'
+import useClickOutsideSize from '../../../hooks/useClickOutSideSize'
 
 const Sidebar = ({ open, setOpen }) => {
     const { pathname } = useLocation();
-    const refSidebar = useClickOutside(() => setOpen({ bool: false, href: pathname?.replace(/^\/p\//, '') }))
+    const path = pathname?.replace(/^\/p\//, '')
+    const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const refSidebar = useClickOutsideSize(() => {
+        setOpen({ bool: false, href: pathname?.replace(/^\/p\//, '') });
+    }, windowSize);
+
     const items = [
         {
             id: 1,
@@ -38,15 +56,15 @@ const Sidebar = ({ open, setOpen }) => {
                     ? 'stroke-white fiill'
                     : 'fill-[#003966]'}
             />,
-            href: "business/ewallet-account-history",
+            href: "business",
             subName: [
                 {
                     name: 'Ewallet Account History',
-                    path: 'business/ewallet-account-history'
+                    path: 'business'
                 },
                 {
                     name: 'Commissions History',
-                    path: 'business/commissions-history'
+                    path: 'busines/commissions-history'
                 },
             ]
         },
@@ -59,16 +77,7 @@ const Sidebar = ({ open, setOpen }) => {
             />,
             name: 'My Reports',
             href: 'roeports',
-            subName: [
-                {
-                    name: 'Create',
-                    path: 'category/add'
-                },
-                {
-                    name: 'Update',
-                    path: 'category/update'
-                },
-            ]
+            subName: []
         },
         {
             id: 4,
@@ -79,16 +88,7 @@ const Sidebar = ({ open, setOpen }) => {
             />,
             name: 'My Orders',
             href: 'orders',
-            subName: [
-                {
-                    name: 'Create',
-                    path: 'category/add'
-                },
-                {
-                    name: 'Update',
-                    path: 'category/update'
-                },
-            ]
+            subName: []
         },
         {
             id: 5,
@@ -98,16 +98,7 @@ const Sidebar = ({ open, setOpen }) => {
                     : 'fill-[#003966]'} />,
             name: 'My Wallet',
             href: 'wallet',
-            subName: [
-                {
-                    name: 'Create',
-                    path: 'category/add'
-                },
-                {
-                    name: 'Update',
-                    path: 'category/update'
-                },
-            ]
+            subName: []
         },
     ]
 
@@ -121,62 +112,57 @@ const Sidebar = ({ open, setOpen }) => {
             <div className='flex-1 flex items-center'>
                 <div className='space-y-5'>
                     {
-                        items.map(item => (
-                            <div key={item.href}>
-                                <div>
-                                    <Link
-                                        to={item.href}
-                                        onClick={() => {
-                                            setOpen(prev => {
-                                                return {
-                                                    ...open,
-                                                    href: [prev.href] == item.href ? null : item.href
-                                                }
-                                            })
-                                        }}
-                                    >
-                                        <div className={`flex items-center gap-5 py-5 shadow-lg px-8 rounded-md 
-                                            ${style.sidebarBtnShadow}
-                                            ${item.href.includes(pathname.split("/")[2]) && 'bg-[#428BAD] text-white'}`
-                                        }>
-                                            {item.icon}
-                                            <span className={clsx(
-                                                'text-[#003966] font-bold whitespace-nowrap',
-                                                { 'text-white': item.href.includes(pathname.split("/")[2]) }
-                                            )}>
-                                                {item.name}
-                                            </span>
-                                            <ArrowIcon className={clsx(
-                                                'stroke-[#003966]',
-                                                { 'rotate-90': open.href == item.href },
-                                                { 'stroke-white': item.href.includes(pathname.split("/")[2]) }
-                                            )} />
-                                        </div>
-                                    </Link>
-                                </div>
-                                <ul className={`bg-blac5 mt-2 space-y-[6px] ${open.href == item.href ? 'block' : 'hidden'}`}>
-                                    {
-                                        item.subName.map(subname => {
-                                            return (<li key={subname.name}>
-                                                <Link
-                                                    to={subname.path}
-                                                    className={`block rounded-md text-[#003966] text-sm 
-                                                        ${subname.path.includes(pathname?.split('/')[3])
-                                                            ? 'bg-blue-400 text-white'
-                                                            : "bg-white/50"}`
-                                                    }
-                                                >
-                                                    <div className='w-full px-2 py-2'>
-                                                        <span>{subname.name}</span>
-                                                    </div>
-                                                </Link>
-                                            </li>)
+                        items.map(item => {
+                            const openHref = open.href
+                            const href = item.href
+                            return (
+                                <div key={item.href}>
+                                    <div>
+                                        <Link
+                                            to={item.href}
+                                            onClick={() => { setOpen({ ...open, href: href }) }}
+                                        >
+                                            <div className={`${style.sidebarBtnShadow} ${item.href.includes(pathname.split("/")[2]) && 'bg-[#428BAD] text-white'}`
+                                            }>
+                                                {item.icon}
+                                                <span className={clsx(
+                                                    'text-[#003966] font-bold whitespace-nowrap',
+                                                    { 'text-white': item.href.includes(pathname.split("/")[2]) }
+                                                )}>
+                                                    {item.name}
+                                                </span>
+                                                <ArrowIcon className={clsx(
+                                                    'stroke-[#003966]',
+                                                    { 'rotate-90': openHref.includes(href) },
+                                                    { 'stroke-white': item.href.includes(pathname.split("/")[2]) }
+                                                )} />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                    <ul className={`bg-blac5 mt-2 space-y-[6px] ${openHref.includes(href) ? 'block' : 'hidden'}`}>
+                                        {
+                                            item.subName.map(subname => {
+                                                return (<li key={subname.name}>
+                                                    <Link
+                                                        to={subname.path}
+                                                        className={`block rounded-md text-[#003966] text-sm 
+                                                        ${path.includes(subname.path)
+                                                                ? 'bg-blue-400 text-white'
+                                                                : "bg-white/50"}`
+                                                        }
+                                                    >
+                                                        <div className='w-full px-2 py-2'>
+                                                            <span>{subname.name}</span>
+                                                        </div>
+                                                    </Link>
+                                                </li>)
+                                            }
+                                            )
                                         }
-                                        )
-                                    }
-                                </ul>
-                            </div>
-                        ))
+                                    </ul>
+                                </div>
+                            )
+                        })
                     }
                 </div>
             </div>

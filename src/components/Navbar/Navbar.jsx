@@ -19,7 +19,8 @@ const Navbar = () => {
         { name: 'Home', href: "/" },
         { name: 'Services', href: '/services' },
         { name: 'About Us', href: '/about' },
-        { name: 'Contact Us', href: "/contact" }
+        { name: 'Contact Us', href: "/contact" },
+        { name: 'Packages', href: "/package" },
     ]
 
     return (
@@ -43,13 +44,17 @@ const Navbar = () => {
                 <div>
                     {user ?
                         <div ref={dropRef} className="hidden md:block relative">
-                            <button onClick={() => setOpenDrop(!openDrop)} className="flex items-center gap-3 ">
+                            <button
+                                className="flex items-center gap-3 "
+                                onClick={() => setOpenDrop(!openDrop)}
+                            >
                                 <span className="block font-semibold"> {user?.name}</span>
                                 <div className="bg-red-500 flex justify-center items-center w-10 h-10 rounded-full font-bold text-white">
                                     {user?.name?.split('')[0]}
                                 </div>
                             </button>
-                            {openDrop &&
+                            {
+                                openDrop &&
                                 <div className='absolute top-12 bg-white rounded-lg z-50'>
                                     <ul>
                                         <li >
@@ -61,10 +66,13 @@ const Navbar = () => {
                                             <LogOut />
                                         </li>
                                     </ul>
-                                </div>}
+                                </div>
+                            }
                         </div>
                         :
-                        <Link to={'/sign-in'} className='hidden md:flex btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md'>
+                        <Link
+                            to={'/sign-in'}
+                            className='hidden md:flex btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md'>
                             Log In
                         </Link>
                     }
