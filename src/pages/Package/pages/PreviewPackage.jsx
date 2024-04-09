@@ -1,8 +1,16 @@
 import Package from "../component/Package"
 import { UsePackageContext } from "../context/appPackageContext"
+import { Navigate } from 'react-router-dom'
 
 const PreviewPackage = () => {
-    const { previewPackage, packages } = UsePackageContext()
+    const { previewPackage, packages, setCart, cart } = UsePackageContext()
+    const addToCart = () => {
+        localStorage.setItem("cart", JSON.stringify([...cart, previewPackage]))
+        setCart(JSON.parse(localStorage.getItem("cart") || '[]'))
+    }
+    if (!previewPackage) {
+        return <Navigate to={'/package'} />
+    }
     return (
         <div className="p-container py-16 lg:py-20">
             <div className="grid grid-cols-12 lg:gap-10">
@@ -79,6 +87,7 @@ const PreviewPackage = () => {
                                 Buy Now
                             </button>
                             <button
+                                onClick={addToCart}
                                 className="w-full text-sm border-2 border-[#4B91B1] py-3 rounded-full tracking-widest text-[#4B91B1] font-medium">
                                 Add to cart
                             </button>
@@ -93,7 +102,7 @@ const PreviewPackage = () => {
                 <div className="grid grid-cols-12 lg:gap-10">
                     {
                         packages?.filter(item => {
-                            return item.id !== previewPackage.id
+                            return item.id !== previewPackage?.id
                         })?.map((item, index) => (
                             index > 1 &&
                             <div

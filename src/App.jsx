@@ -21,6 +21,7 @@ const CommissionsHistory = lazy(() => import('./pages/Profile/Business/Commissio
 const Package = lazy(() => import('./pages/Package/Page'));
 const PackageLayout = lazy(() => import('./pages/Package/PackageLayout'));
 const PreviewPackage = lazy(() => import('./pages/Package/pages/PreviewPackage'));
+const CartPackage = lazy(() => import('./pages/Package/pages/CartPackage'));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 
@@ -39,6 +40,7 @@ function App() {
               <Route path='/package' element={<PackageLayout />} >
                 <Route path='/package' element={<Package />} />
                 <Route path='/package/preview' element={<PreviewPackage />} />
+                <Route path='/package/cart' element={<CartPackage />} />
               </Route>
             </Route>
             <Route path='/sign-in' element={<SignIn />} />
