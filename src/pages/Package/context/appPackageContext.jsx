@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast'
 
 const providerContext = createContext()
 const AppPackageProvider = ({ children }) => {
-    const [packages, setPackages] = useState([])
+    const [packages, setPackages] = useState([1, 2, 3, 4, 5, 6])
     const [previewPackage, setPreviewPackage] = useState(null)
 
     const [cart, setCart] = useState([])

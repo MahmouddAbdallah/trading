@@ -1,16 +1,18 @@
 import Package from "../component/Package"
 import { UsePackageContext } from "../context/appPackageContext"
-// import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const PreviewPackage = () => {
+    const navigate = useNavigate()
     const { previewPackage, packages, setCart, cart } = UsePackageContext()
     const addToCart = () => {
         localStorage.setItem("cart", JSON.stringify([...cart, previewPackage]))
         setCart(JSON.parse(localStorage.getItem("cart") || '[]'))
+        navigate('/package/cart')
     }
-    // if (!previewPackage) {
-    //     return <Navigate to={'/package'} />
-    // }
+    if (!previewPackage) {
+        return <Navigate to={'/package'} />
+    }
     return (
         <div className="p-container py-16 lg:py-20">
             <div className="grid grid-cols-12 lg:gap-10">
@@ -22,9 +24,6 @@ const PreviewPackage = () => {
                         <h4 className='text-xl lg:text-3xl text-[#223F4A] font-medium'>
                             {previewPackage?.name}
                         </h4>
-                        <span className='block text-black'>
-                            $ {previewPackage?.price}
-                        </span>
                     </div>
                 </div>
                 <div className="col-span-12 lg:col-span-6">
