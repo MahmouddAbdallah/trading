@@ -7,7 +7,7 @@ const LayoutPages = () => {
     return (
         <>
             <Navbar />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className='h-screen w-screen'>Loading...</div>}>
                 <Outlet />
             </Suspense>
             <Footer />

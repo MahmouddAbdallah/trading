@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import axios from 'axios'
 import Loading from './components/Loading'
 import AppProvider from './context/appContext'
-import axios from 'axios'
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
@@ -19,6 +19,8 @@ const HoldingTank = lazy(() => import('./pages/Profile/Dashboard/HoldingTank'));
 const EwalletAccountHistory = lazy(() => import('./pages/Profile/Business/EwalletAccountHistory'));
 const CommissionsHistory = lazy(() => import('./pages/Profile/Business/CommissionsHistory'));
 const Package = lazy(() => import('./pages/Package/Page'));
+const PackageLayout = lazy(() => import('./pages/Package/PackageLayout'));
+const PreviewPackage = lazy(() => import('./pages/Package/pages/PreviewPackage'));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 
@@ -34,7 +36,10 @@ function App() {
               <Route path='/services' element={<Services />} />
               <Route path='/contact' element={<ContactUs />} />
               <Route path='/about' element={<About />} />
-              <Route path='/package' element={<Package />} />
+              <Route path='/package' element={<PackageLayout />} >
+                <Route path='/package' element={<Package />} />
+                <Route path='/package/preview' element={<PreviewPackage />} />
+              </Route>
             </Route>
             <Route path='/sign-in' element={<SignIn />} />
             <Route path='/sign-up' element={<SignUp />} />

@@ -1,24 +1,9 @@
-import toast from 'react-hot-toast'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import WhySection from '../../../assets/WhySection.png'
+import { UsePackageContext } from '../context/appPackageContext'
 import Package from './Package'
 
 const Packages = () => {
-    const [packages, setPackages] = useState([])
-    const fetchPackages = async () => {
-        try {
-            const { data } = await axios.get('/api/Admin/GetAllPackages')
-            setPackages(data)
-        } catch (error) {
-            toast.error(error?.response?.data || "Can not get packages")
-            console.error(error);
-        }
-    }
-    useEffect(() => {
-        fetchPackages()
-    }, []);
-    console.log(packages);
+    const { packages } = UsePackageContext()
     return (
         <div className='py-10 relative'>
             <div>
@@ -34,7 +19,7 @@ const Packages = () => {
                         {packages?.map(item => (
                             <div
                                 key={item.id}
-                                className='col-span-12 md:col-span-6 lg:col-span-4 m-3 card-services rounded-2xl overflow-hidden '
+                                className='col-span-12 md:col-span-6 lg:col-span-4 m-3 card-services rounded-xl overflow-hidden '
                             >
                                 <Package data={item} />
                             </div>

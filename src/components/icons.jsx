@@ -40,6 +40,19 @@ export const ArrowIcon = ({ className }) => {
 ArrowIcon.propTypes = {
     className: proptTypes.string
 }
+export const ArrowRightIcon = ({ className }) => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className={className} width="15" height="14" viewBox="0 0 15 14" fill="none">
+            <path d="M7.32715 0.821289L13.8002 7.0001L7.32715 13.1789" stroke="white" strokeWidth="1.3125" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M13.8001 7L1.2002 7Z" fill="white" />
+            <path d="M13.8001 7L1.2002 7" stroke="white" strokeWidth="1.3125" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+ArrowRightIcon.propTypes = {
+    className: proptTypes.string
+}
 export const WalletIcon = ({ className }) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className={className} width="22" height="18" viewBox="0 0 22 18" fill="none">

@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types'
+import { Link, useLocation } from 'react-router-dom'
+import { UsePackageContext } from '../context/appPackageContext'
+import { ArrowRightIcon } from '../../../components/icons'
 
 const Package = ({ data }) => {
+    const { setPreviewPackage } = UsePackageContext()
+    const { pathname } = useLocation()
     return (
         <div>
             <div>
@@ -20,9 +25,16 @@ const Package = ({ data }) => {
                     </span>
                 </div>
                 <div className='flex justify-end'>
-                    <button className="text-sm card-services btn-blue-gradient px-10 py-2 rounded-full tracking-widest text-white font-medium">
-                        Add to cart
-                    </button>
+                    <Link
+                        to={`/package/preview`}
+                        onClick={() => { setPreviewPackage(data) }}
+                        className={`text-sm card-services btn-blue-gradient ${pathname.includes("preview") ? 'p-3' : 'px-10 py-2'} rounded-full tracking-widest text-white font-medium`}>
+                        {
+                            pathname.includes("preview") ?
+                                <ArrowRightIcon className={'w-5 h-5'} /> :
+                                "Add to cart"
+                        }
+                    </Link>
                 </div>
             </div>
         </div>

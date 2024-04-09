@@ -1,6 +1,6 @@
 import hero from '../../assets/pakage_hero.png'
 import Packages from './component/Packages'
-const Package = () => {
+const Page = () => {
     return (
         <div>
             <div className="p-container py-20">
@@ -33,4 +33,4 @@ const Package = () => {
     )
 }
 
-export default Package
+export default Page
