@@ -61,8 +61,7 @@ const Transfer = () => {
                     >
                         CANCEL
                     </button>
-                    <button className="text-sm card-services btn-blue-gradient px-10 py-3 rounded-full tracking-widest text-white font-medium"
-                    >
+                    <button className="text-sm card-services btn-blue-gradient px-10 py-3 rounded-full tracking-widest text-white font-medium">
                         TRANSFER
                     </button>
                 </div>

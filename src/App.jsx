@@ -4,21 +4,21 @@ import { Toaster } from 'react-hot-toast'
 import Loading from './components/Loading'
 import AppProvider from './context/appContext'
 import axios from 'axios'
-import Package from './pages/Package/Package'
-const Home = lazy(() => import('./pages/Home'))
-const About = lazy(() => import('./pages/About'))
-const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'))
-const Services = lazy(() => import('./pages/Services/Services'))
-const LayoutPages = lazy(() => import('./LayoutPages'))
-const SignUp = lazy(() => import('./pages/SignUp'))
-const SignIn = lazy(() => import('./pages/SignIn'))
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
+const Services = lazy(() => import('./pages/Services/Services'));
+const LayoutPages = lazy(() => import('./LayoutPages'));
+const SignUp = lazy(() => import('./pages/SignUp'));
+const SignIn = lazy(() => import('./pages/SignIn'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const LayoutProfile = lazy(() => import('./pages/Profile/LayoutProfile'))
+const LayoutProfile = lazy(() => import('./pages/Profile/LayoutProfile'));
 const Dashboard = lazy(() => import('./pages/Profile/Dashboard/Dashboard'));
 const Transfer = lazy(() => import('./pages/Profile/Dashboard/Transfer'));
 const HoldingTank = lazy(() => import('./pages/Profile/Dashboard/HoldingTank'));
 const EwalletAccountHistory = lazy(() => import('./pages/Profile/Business/EwalletAccountHistory'));
 const CommissionsHistory = lazy(() => import('./pages/Profile/Business/CommissionsHistory'));
+const Package = lazy(() => import('./pages/Package/Page'));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 
