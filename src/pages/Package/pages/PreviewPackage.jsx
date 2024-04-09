@@ -1,6 +1,6 @@
 import Package from "../component/Package"
 import { UsePackageContext } from "../context/appPackageContext"
-import { Navigate } from 'react-router-dom'
+// import { Navigate } from 'react-router-dom'
 
 const PreviewPackage = () => {
     const { previewPackage, packages, setCart, cart } = UsePackageContext()
@@ -8,9 +8,9 @@ const PreviewPackage = () => {
         localStorage.setItem("cart", JSON.stringify([...cart, previewPackage]))
         setCart(JSON.parse(localStorage.getItem("cart") || '[]'))
     }
-    if (!previewPackage) {
-        return <Navigate to={'/package'} />
-    }
+    // if (!previewPackage) {
+    //     return <Navigate to={'/package'} />
+    // }
     return (
         <div className="p-container py-16 lg:py-20">
             <div className="grid grid-cols-12 lg:gap-10">

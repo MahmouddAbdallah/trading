@@ -62,6 +62,11 @@ const Navbar = () => {
                                                 Dashboard
                                             </Link>
                                         </li>
+                                        <li >
+                                            <Link to={'/package/cart'} className='block px-5 py-2 text-sm border-b'>
+                                                Cart
+                                            </Link>
+                                        </li>
                                         <li className='block px-5 py-2 text-sm border-b'>
                                             <LogOut />
                                         </li>

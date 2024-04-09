@@ -9,6 +9,7 @@ const AppPackageProvider = ({ children }) => {
     const [previewPackage, setPreviewPackage] = useState(null)
 
     const [cart, setCart] = useState([])
+
     const fetchCarts = () => {
         const userData = localStorage?.getItem('cart');
         const carts = JSON.parse(userData) || []
