@@ -1,7 +1,28 @@
 import PropTypes from 'prop-types'
 import TableData from '../component/TableData'
-
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { useCallback, useEffect, useState } from 'react'
+import { UseAppContext } from '../../../context/appContext'
+import React from 'react'
 const EwalletAccountHistory = () => {
+    const { user } = UseAppContext()
+    const [data, setData] = useState([])
+    const getBalance = useCallback(
+        async () => {
+            try {
+                const { data } = await axios.get(`/api/BankController/GetBalanceHistory?CustomerAttributeId=${user.customerAttributeId}`)
+                setData(data)
+                console.log(data);
+            } catch (error) {
+                toast.error(error?.response?.data?.message || 'There is an Error')
+                console.error(error);
+            }
+        }, [user.customerAttributeId]
+    )
+    useEffect(() => {
+        getBalance()
+    }, [getBalance])
     return (
         <div className="px-5 md:px-10 lg:pl-0 lg:pr-10">
             <div>
@@ -10,7 +31,7 @@ const EwalletAccountHistory = () => {
                 </span>
             </div>
             <div className="grid grid-cols-12 mt-10 gap-5 lg:gap-10">
-                <CardUser title={'Name'} text={'Ammar Hegazy'} />
+                <CardUser title={'Name'} text={user?.name} />
                 <CardUser title={'Hold Amount'} text={'$128,320'} />
                 <CardUser title={'Available Amount'} text={'$128,320'} />
                 <CardUser title={'Total Amount'} text={'$128,320'} />
@@ -36,47 +57,27 @@ const EwalletAccountHistory = () => {
                 <table className='w-full'>
                     <thead className='border-b border-gray-300 whitespace-nowrap text-[#285D89] md:text-base lg:text-lg'>
                         <tr>
-                            <th className='py-3 lg:py-5 px-10 text-center'>Global Date</th>
-                            <th className='py-3 lg:py-5 px-10 text-center'>Type</th>
-                            <th className='py-3 lg:py-5 px-10 text-center'>Global Description</th>
+                            <th className='py-3 lg:py-5 px-10 text-center'>Date</th>
+                            <th className='py-3 lg:py-5 px-10 text-center'>Description</th>
                             <th className='py-3 lg:py-5 px-10 text-center'>Dedit</th>
                             <th className='py-3 lg:py-5 px-10 text-center'>Credit</th>
                             <th className='py-3 lg:py-5 px-10 text-center'>Balance</th>
                         </tr>
                     </thead>
                     <tbody className=''>
-                        <TableData
-                            globalDate={'Jan 19, 2024 10:35 AM'}
-                            type={'Adjust'}
-                            globalDescription={'Transfer on Dec 4th rejected due to outstanding payable'}
-                            dedit={"10.00"}
-                            credit={'10.00'}
-                            balance={'3.00'}
-                        />
-                        <TableData
-                            globalDate={'Jan 19, 2024 10:35 AM'}
-                            type={'Adjust'}
-                            globalDescription={'Transfer on Dec 4th rejected due to outstanding payable'}
-                            dedit={"10.00"}
-                            credit={'-'}
-                            balance={'3.00'}
-                        />
-                        <TableData
-                            globalDate={'Jan 19, 2024 10:35 AM'}
-                            type={'Adjust'}
-                            globalDescription={'Transfer on Dec 4th rejected due to outstanding payable'}
-                            dedit={"10.00"}
-                            credit={'-'}
-                            balance={'3.00'}
-                        />
-                        <TableData
-                            globalDate={'Jan 19, 2024 10:35 AM'}
-                            type={'Adjust'}
-                            globalDescription={'Transfer on Dec 4th rejected due to outstanding payable'}
-                            dedit={"10.00"}
-                            credit={'10.00'}
-                            balance={'3.00'}
-                        />
+                        {data?.map(item => {
+                            return (
+                                <React.Fragment key={item.id}>
+                                    <TableData
+                                        globalDate={item.transactionDate}
+                                        globalDescription={item.description}
+                                        dedit={item.debit}
+                                        credit={item.credit}
+                                        balance={item.balance}
+                                    />
+                                </React.Fragment>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>
