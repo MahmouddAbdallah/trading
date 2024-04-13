@@ -1,8 +1,10 @@
-
+import { useNavigate } from "react-router-dom";
 const LogOut = () => {
+    const navigate = useNavigate();
     const logOut = () => {
         localStorage.clear();
         window.location.reload();
+        navigate('/sign-in')
     }
     return (
         <div>

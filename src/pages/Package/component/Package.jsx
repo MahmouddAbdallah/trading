@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types'
-import { Link, useLocation } from 'react-router-dom'
-import { UsePackageContext } from '../context/appPackageContext'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ArrowRightIcon } from '../../../components/icons'
-
+import { UseAppContext } from '../../../context/appContext'
 const Package = ({ data }) => {
-    const { setPreviewPackage } = UsePackageContext()
+    const { setCart, cart } = UseAppContext()
     const { pathname } = useLocation()
+    const navigate = useNavigate()
+
+    const addToCart = (item) => {
+        localStorage.setItem("cart", JSON.stringify([...cart, item]))
+        setCart(JSON.parse(localStorage.getItem("cart") || '[]'))
+        navigate('/package/cart')
+    }
+
     return (
         <>
             {data.id ?
                 <div>
                     <div>
                         <img
-                            className='w-full'
+                            className='w-full h-56 object-cover'
                             src={data?.url}
                             alt=""
                         />
@@ -27,16 +34,16 @@ const Package = ({ data }) => {
                             </span>
                         </div>
                         <div className='flex justify-end'>
-                            <Link
+                            <button
                                 to={`/package/preview`}
-                                onClick={() => { setPreviewPackage(data) }}
+                                onClick={() => { addToCart(data) }}
                                 className={`text-sm card-services btn-blue-gradient ${pathname.includes("preview") ? 'p-3' : 'px-10 py-2'} rounded-full tracking-widest text-white font-medium`}>
                                 {
                                     pathname.includes("preview") ?
                                         <ArrowRightIcon className={'w-5 h-5'} /> :
                                         "Add to cart"
                                 }
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div> :

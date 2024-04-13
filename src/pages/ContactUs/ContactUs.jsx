@@ -3,11 +3,12 @@ import { EmailIcon, LocationIcon, PhoneIcon } from '../../components/icons'
 const ContactUs = () => {
     return (
         <>
-            <div className=" py-10 lg:py-20">
-                <img className='w-full h-[430px]' src={hero} alt="" />
+            <div className=" py-10 lg:py-20 relative flex items-center">
+                <h4 className='absolute right-10 md:right-32 lg:right-56  text-[#003966] text-2xl md:text-3xl lg:text-5xl font-semibold'>Contact Us</h4>
+                <img className='w-full h-[200px] lg:h-[430px]' src={hero} alt="" />
             </div>
             <section >
-                <div className='p-container py-20'>
+                <div className='p-container pt-10 pb-20'>
                     <div className="grid grid-cols-12 gap-10">
                         <div className="col-span-12 lg:col-span-4 space-y-5">
                             <div className='space-y-4'>

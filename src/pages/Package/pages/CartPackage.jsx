@@ -1,10 +1,10 @@
-import { UsePackageContext } from "../context/appPackageContext"
 import cartImage from '../../../assets/cart.png'
 import { useNavigate } from 'react-router-dom'
+import { UseAppContext } from "../../../context/appContext"
 
 const CartPackage = () => {
     const navigate = useNavigate()
-    const { cart, setCart } = UsePackageContext();
+    const { cart, setCart } = UseAppContext();
 
     const sumMoney = () => {
         let total = 0;
@@ -64,7 +64,7 @@ const CartPackage = () => {
                                     <div className="space-y-3">
                                         <div className="flex gap-2">
                                             <h6 className="text-xl font-medium">Total Pirce : </h6>
-                                            <span className="font-bold text-3xl">{sumMoney()}</span>
+                                            <span className="font-bold text-3xl">$ {sumMoney()}</span>
                                         </div>
                                     </div>
                                     <div className="pt-5 space-y-3">

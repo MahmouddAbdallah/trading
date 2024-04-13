@@ -1,10 +1,10 @@
+import { UseAppContext } from "../../../context/appContext"
 import Package from "../component/Package"
-import { UsePackageContext } from "../context/appPackageContext"
 import { Navigate, useNavigate } from 'react-router-dom'
 
 const PreviewPackage = () => {
     const navigate = useNavigate()
-    const { previewPackage, packages, setCart, cart } = UsePackageContext()
+    const { previewPackage, packages, setCart, cart } = UseAppContext()
     const addToCart = () => {
         localStorage.setItem("cart", JSON.stringify([...cart, previewPackage]))
         setCart(JSON.parse(localStorage.getItem("cart") || '[]'))

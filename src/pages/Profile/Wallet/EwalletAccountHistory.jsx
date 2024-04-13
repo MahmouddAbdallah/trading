@@ -1,28 +1,47 @@
 import PropTypes from 'prop-types'
 import TableData from '../component/TableData'
 import axios from 'axios'
-import { toast } from 'react-hot-toast'
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { UseAppContext } from '../../../context/appContext'
-import React from 'react'
 const EwalletAccountHistory = () => {
     const { user } = UseAppContext()
     const [data, setData] = useState([])
+    const [getHoldAmount, setgetHoldAmount] = useState([])
+
+
+    const getHoldAmountTotalAmount = useCallback(
+        async () => {
+            try {
+                const { data } = await axios.get(`/api/User/Get_HoldAmount_and_TotalAmount?customerAttributeId=${user?.customerAttributeId}`)
+                setgetHoldAmount(data)
+            } catch (error) {
+                console.error(error);
+            }
+        }, [user?.customerAttributeId]
+    )
+    useEffect(() => {
+        getHoldAmountTotalAmount()
+    }, [getHoldAmountTotalAmount])
+
+
+
     const getBalance = useCallback(
         async () => {
             try {
-                const { data } = await axios.get(`/api/BankController/GetBalanceHistory?CustomerAttributeId=${user.customerAttributeId}`)
+                const { data } = await axios.get(`/api/BankController/GetBalanceHistory?CustomerAttributeId=${user?.customerAttributeId}`)
                 setData(data)
-                console.log(data);
             } catch (error) {
-                toast.error(error?.response?.data?.message || 'There is an Error')
                 console.error(error);
             }
-        }, [user.customerAttributeId]
+        }, [user?.customerAttributeId]
     )
     useEffect(() => {
         getBalance()
     }, [getBalance])
+
+
+
+
     return (
         <div className="px-5 md:px-10 lg:pl-0 lg:pr-10">
             <div>
@@ -32,9 +51,9 @@ const EwalletAccountHistory = () => {
             </div>
             <div className="grid grid-cols-12 mt-10 gap-5 lg:gap-10">
                 <CardUser title={'Name'} text={user?.name} />
-                <CardUser title={'Hold Amount'} text={'$128,320'} />
+                <CardUser title={'Hold Amount'} text={`$ ${getHoldAmount?.holdAmount}`} />
                 <CardUser title={'Available Amount'} text={'$128,320'} />
-                <CardUser title={'Total Amount'} text={'$128,320'} />
+                <CardUser title={'Total Amount'} text={`$ ${getHoldAmount?.totalAmount}`} />
             </div>
             <div className='relative sm:rounded-xl blackWhiteShadow px-1 sm:px-5 md:px-10 lg:px-12 pb-5 overflow-x-auto mt-14'>
                 <table className='w-full'>
@@ -65,19 +84,24 @@ const EwalletAccountHistory = () => {
                         </tr>
                     </thead>
                     <tbody className=''>
-                        {data?.map(item => {
-                            return (
-                                <React.Fragment key={item.id}>
-                                    <TableData
-                                        globalDate={item.transactionDate}
-                                        globalDescription={item.description}
-                                        dedit={item.debit}
-                                        credit={item.credit}
-                                        balance={item.balance}
-                                    />
-                                </React.Fragment>
-                            )
-                        })}
+                        {data?.length ?
+                            data?.map((item, i) => {
+                                return (
+                                    <React.Fragment key={i}>
+                                        <TableData
+                                            globalDate={item.transactionDate}
+                                            globalDescription={item.description}
+                                            dedit={item.debit}
+                                            credit={item.credit}
+                                            balance={item.balance}
+                                        />
+                                    </React.Fragment>
+                                )
+                            }) :
+                            <tr className='border-b'>
+                                <td colSpan={5} className='text-center pt-5'>No Records found</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

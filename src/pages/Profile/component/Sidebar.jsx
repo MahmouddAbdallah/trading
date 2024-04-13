@@ -58,13 +58,10 @@ const Sidebar = ({ open, setOpen }) => {
             />,
             href: "business",
             subName: [
-                {
-                    name: 'Ewallet Account History',
-                    path: 'business'
-                },
+
                 {
                     name: 'Commissions History',
-                    path: 'busines/commissions-history'
+                    path: 'business'
                 },
             ]
         },
@@ -94,11 +91,16 @@ const Sidebar = ({ open, setOpen }) => {
             id: 5,
             icon: <WalletIcon className={
                 pathname?.includes('wallet')
-                    ? 'fill-white'
+                    ? 'stroke-white'
                     : 'fill-[#003966]'} />,
             name: 'My Wallet',
             href: 'wallet',
-            subName: []
+            subName: [
+                {
+                    name: 'Ewallet Account History',
+                    path: 'wallet'
+                }
+            ]
         },
     ]
 

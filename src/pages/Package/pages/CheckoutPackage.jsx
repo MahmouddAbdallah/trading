@@ -1,9 +1,9 @@
-import { UsePackageContext } from "../context/appPackageContext"
 import checkoutImage from '../../../assets/checkout.png'
 import Checkout from "../component/Checkout";
+import { UseAppContext } from "../../../context/appContext";
 
 const CheckoutPackage = () => {
-    const { cart } = UsePackageContext();
+    const { cart } = UseAppContext();
 
     return (
         <div className=" p-container ">

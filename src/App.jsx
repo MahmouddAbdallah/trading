@@ -16,10 +16,9 @@ const LayoutProfile = lazy(() => import('./pages/Profile/LayoutProfile'));
 const Dashboard = lazy(() => import('./pages/Profile/Dashboard/Dashboard'));
 const Transfer = lazy(() => import('./pages/Profile/Dashboard/Transfer'));
 const HoldingTank = lazy(() => import('./pages/Profile/Dashboard/HoldingTank'));
-const EwalletAccountHistory = lazy(() => import('./pages/Profile/Business/EwalletAccountHistory'));
+const EwalletAccountHistory = lazy(() => import('./pages/Profile/Wallet/EwalletAccountHistory'));
 const CommissionsHistory = lazy(() => import('./pages/Profile/Business/CommissionsHistory'));
 const Package = lazy(() => import('./pages/Package/Page'));
-const PackageLayout = lazy(() => import('./pages/Package/PackageLayout'));
 const PreviewPackage = lazy(() => import('./pages/Package/pages/PreviewPackage'));
 const CartPackage = lazy(() => import('./pages/Package/pages/CartPackage'));
 const CheckoutPackage = lazy(() => import('./pages/Package/pages/CheckoutPackage'));
@@ -39,13 +38,11 @@ function App() {
               <Route path='/services' element={<Services />} />
               <Route path='/contact' element={<ContactUs />} />
               <Route path='/about' element={<About />} />
-              <Route path='/package' element={<PackageLayout />} >
-                <Route path='/package' element={<Package />} />
-                <Route path='/package/preview' element={<PreviewPackage />} />
-                <Route path='/package/cart' element={<CartPackage />} />
-                <Route path='/package/checkout' element={<CheckoutPackage />} />
-                <Route path='/package/payment' element={<PaymentPackage />} />
-              </Route>
+              <Route path='/package' element={<Package />} />
+              <Route path='/package/preview' element={<PreviewPackage />} />
+              <Route path='/package/cart' element={<CartPackage />} />
+              <Route path='/package/checkout' element={<CheckoutPackage />} />
+              <Route path='/package/payment' element={<PaymentPackage />} />
             </Route>
             <Route path='/sign-in' element={<SignIn />} />
             <Route path='/sign-up' element={<SignUp />} />
@@ -53,8 +50,8 @@ function App() {
               <Route path='/p/dashboard' element={<Dashboard />} />
               <Route path='/p/dashboard/transfer' element={<Transfer />} />
               <Route path='/p/dashboard/holding-tank' element={<HoldingTank />} />
-              <Route path='/p/business' element={<EwalletAccountHistory />} />
-              <Route path='/p/busines/commissions-history' element={<CommissionsHistory />} />
+              <Route path='/p/wallet' element={<EwalletAccountHistory />} />
+              <Route path='/p/business' element={<CommissionsHistory />} />
             </Route>
             <Route path='*' element={<NotFound />} />
           </Routes>

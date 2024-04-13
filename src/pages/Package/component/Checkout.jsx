@@ -1,10 +1,13 @@
-import { UsePackageContext } from '../context/appPackageContext';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { UseAppContext } from '../../../context/appContext';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
-
-const Checkout = () => {
-    const navigate = useNavigate()
-    const { cart } = UsePackageContext();
+const Checkout = ({ able, token, }) => {
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+    const { cart, user } = UseAppContext();
 
     const sumMoney = () => {
         let total = 0;
@@ -12,6 +15,27 @@ const Checkout = () => {
             total += element.price
         });
         return total;
+    }
+    const cartsIds = cart?.map(element => {
+        return element.id
+    })
+    const buyPackages = async () => {
+        try {
+            const { data } = await axios.post('/api/User/BuyPackages',
+                {
+                    tokens: [
+                        token
+                    ],
+                    packagesIds: cartsIds,
+                    customerAttributeId: user?.customerAttributeId
+                }
+            )
+            console.log(data);
+            toast.success(data.message);
+        } catch (error) {
+            toast.error(error?.response?.data || 'There is an Error')
+            console.error(error);
+        }
     }
     return (
         <div className="p-10 rounded-3xl card-services space-y-3">
@@ -28,13 +52,14 @@ const Checkout = () => {
                                 </div>
                                 <div>
                                     <span>{cart.name}</span>
+                                    <span className='block'>${cart.price}</span>
                                 </div>
                             </div>
                         </div>
                     )
                 })}
             </div>
-            <div className="flex gap-8">
+            {/* <div className="flex gap-8">
                 <input
                     placeholder="discount code"
                     type="text"
@@ -43,26 +68,40 @@ const Checkout = () => {
                 <button className="py-3 px-10 rounded-md outline-none border border-[#448CAE] bg-transparent text-[#448CAE]">
                     Apply
                 </button>
-            </div>
+            </div> */}
             <div className="pt-10 lg:space-y-5">
                 <div className="p-10 rounded-3xl card-services space-y-3">
                     <div className="space-y-3">
                         <div className="flex items-center justify-between gap-2">
                             <h6 className="text-xl font-medium">Grand Total </h6>
-                            <span className="font-bold text-xl">{sumMoney()}</span>
+                            <span className="font-bold text-xl">$ {sumMoney()}</span>
                         </div>
                     </div>
                 </div>
                 <div className="pt-5 space-y-3">
-                    <button
-                        onClick={() => { navigate('/package/payment') }}
-                        className="w-full text-sm card-services btn-blue-gradient py-3 rounded-full tracking-widest text-white font-medium">
-                        Continue to pay
-                    </button>
+                    {
+                        pathname.includes("checkout") ?
+                            <button
+                                onClick={() => { navigate('/package/payment') }}
+                                className="w-full text-sm card-services btn-blue-gradient py-3 rounded-full tracking-widest text-white font-medium">
+                                Continue to Pay
+                            </button>
+                            :
+                            <button
+                                disabled={!able}
+                                onClick={buyPackages}
+                                className="w-full text-sm card-services bg-[#478EB0] disabled:bg-[#478EB0]/50 py-3 rounded-full tracking-widest text-white font-medium">
+                                Pay
+                            </button>
+                    }
                 </div>
             </div>
         </div>
     )
 }
 
+Checkout.propTypes = {
+    able: PropTypes.bool,
+    token: PropTypes.string
+}
 export default Checkout
