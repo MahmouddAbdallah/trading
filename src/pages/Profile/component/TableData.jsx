@@ -17,9 +17,9 @@ const TableData = ({ globalDate, globalDescription, dedit, credit, balance }) =>
 TableData.propTypes = {
     globalDate: PropTypes.string,
     globalDescription: PropTypes.string,
-    dedit: PropTypes.string,
-    credit: PropTypes.string,
-    balance: PropTypes.string
+    dedit: PropTypes.number,
+    credit: PropTypes.number,
+    balance: PropTypes.number
 }
 
 export default TableData

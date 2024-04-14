@@ -14,6 +14,7 @@ const EwalletAccountHistory = () => {
             try {
                 const { data } = await axios.get(`/api/User/Get_HoldAmount_and_TotalAmount?customerAttributeId=${user?.customerAttributeId}`)
                 setgetHoldAmount(data)
+                console.log(data);
             } catch (error) {
                 console.error(error);
             }
@@ -51,9 +52,9 @@ const EwalletAccountHistory = () => {
             </div>
             <div className="grid grid-cols-12 mt-10 gap-5 lg:gap-10">
                 <CardUser title={'Name'} text={user?.name} />
-                <CardUser title={'Hold Amount'} text={`$ ${getHoldAmount?.holdAmount}`} />
-                <CardUser title={'Available Amount'} text={'$128,320'} />
-                <CardUser title={'Total Amount'} text={`$ ${getHoldAmount?.totalAmount}`} />
+                <CardUser title={'Hold Amount'} text={`$ ${getHoldAmount?.holdAmount || 0}`} />
+                <CardUser title={'Available Amount'} text={`$ ${getHoldAmount?.avaliableAmount || 0}`} />
+                <CardUser title={'Total Amount'} text={`$ ${getHoldAmount?.totalAmount || 0}`} />
             </div>
             <div className='relative sm:rounded-xl blackWhiteShadow px-1 sm:px-5 md:px-10 lg:px-12 pb-5 overflow-x-auto mt-14'>
                 <table className='w-full'>

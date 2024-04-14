@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
@@ -7,6 +7,8 @@ const providerContext = createContext()
 const AppProvider = ({ children }) => {
     const data = JSON.parse(localStorage?.getItem('user'))
     const [user, setUser] = useState(data)
+
+    const [balance, setBalance] = useState('')
 
     const [packages, setPackages] = useState([1, 2, 3, 4, 5, 6])
     const [previewPackage, setPreviewPackage] = useState(null)
@@ -37,8 +39,21 @@ const AppProvider = ({ children }) => {
     }, []);
 
 
+    const getBalance = useCallback(async () => {
+        try {
+            const { data } = await axios.get(`/api/BankController/LastSignupBalance?userId=${user?.customerAttributeId}`)
+            setBalance(data?.balance)
+        } catch (error) {
+            console.error(error);
+        }
+    }, [user])
+
+    useEffect(() => {
+        getBalance()
+    }, [getBalance]);
+
     return (
-        <providerContext.Provider value={{ user, setUser, packages, setPackages, previewPackage, setPreviewPackage, setCart, cart }}>
+        <providerContext.Provider value={{ user, setUser, packages, setPackages, previewPackage, setPreviewPackage, setCart, cart, balance }}>
             {children}
         </providerContext.Provider>
     )

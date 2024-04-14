@@ -41,19 +41,17 @@ const ServicesSlides = () => {
                 <div className="h-[320px] md:h-[400px] flex flex-nowrap" onMouseLeave={handleMouseLeave}>
                     {cards.map((card, index) => (
                         <React.Fragment key={index}>
-                            <input style={{ display: 'none' }} type="radio" name="slide" id={card.id} checked={activeIndex === index} />
+                            <input style={{ display: 'none' }} type="radio" name="slide" id={card.id} defaultChecked={activeIndex === index} />
                             <label htmlFor={card.id}
                                 onMouseEnter={() => handleMouseEnter(index)}
-                                className={`page-services-card ${activeIndex === index && 'active'}`}
+                                className={`page-services-card rounded-md md:rounded-lg lg:rounded-xl mx-2 lg:mx-3 ${activeIndex === index && 'active'}`}
                                 style={{
                                     backgroundImage: `url(${card.backgroundColor})`
                                 }}
                             >
-                                <div className="row w-full">
-                                    <div className="description relative">
-                                        <h4 className="font-[400] font-Roboto">{card.title}</h4>
-                                        <p className="text-xl hidden whitespace-nowrap">{card.description}</p>
-                                    </div>
+                                <div className="w-full textHeadandP text-white flex justify-between items-center px-3 md:px-5 py-5 mb-4 md:mb-8">
+                                    <h4 className="font-[400] font-Roboto text-lg sm:text-xl md:text-2xl lg:text-3xl leading-[20px]">{card.title}</h4>
+                                    <p className="whitespace-nowrap hidden text-xs md:text-base">{card.description}</p>
                                 </div>
                             </label>
                         </React.Fragment>

@@ -3,11 +3,15 @@ import PropTypes from 'prop-types'
 import { UseAppContext } from '../../../context/appContext';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
+import { useState } from 'react';
+import { LoadingIcon } from '../../../components/icons';
 
-const Checkout = ({ able, token, }) => {
+const Checkout = ({ able, tokens, setToken, balance, ableBalance }) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { cart, user } = UseAppContext();
+    const [loadingBalance, setLoadingBalance] = useState(false)
+    const [loadingToken, setLoadingToken] = useState(false)
 
     const sumMoney = () => {
         let total = 0;
@@ -21,17 +25,36 @@ const Checkout = ({ able, token, }) => {
     })
     const buyPackages = async () => {
         try {
-            const { data } = await axios.post('/api/User/BuyPackages',
+            setLoadingToken(true)
+            const { data } = await axios.post('/api/User/BuyPackageByTonkens',
                 {
-                    tokens: [
-                        token
-                    ],
+                    tokens: tokens,
                     packagesIds: cartsIds,
                     customerAttributeId: user?.customerAttributeId
                 }
             )
-            console.log(data);
-            toast.success(data.message);
+            setLoadingToken(false)
+            setToken([""])
+            navigate("/successfully")
+            toast.success(data.message || 'Successfully!!');
+        } catch (error) {
+            toast.error(error?.response?.data || 'There is an Error')
+            console.error(error);
+        }
+    }
+
+    const buyByBalance = async () => {
+        try {
+            setLoadingBalance(true)
+            const { data } = await axios.post('/api/User/BuyPackageUsingSignupBalance',
+                {
+                    packagesIds: cartsIds,
+                    customerAttributeId: user?.customerAttributeId
+                }
+            )
+            setLoadingBalance(false)
+            navigate("/successfully")
+            toast.success(data.message || 'Successfully!!');
         } catch (error) {
             toast.error(error?.response?.data || 'There is an Error')
             console.error(error);
@@ -87,12 +110,20 @@ const Checkout = ({ able, token, }) => {
                                 Continue to Pay
                             </button>
                             :
-                            <button
-                                disabled={!able}
-                                onClick={buyPackages}
-                                className="w-full text-sm card-services bg-[#478EB0] disabled:bg-[#478EB0]/50 py-3 rounded-full tracking-widest text-white font-medium">
-                                Pay
-                            </button>
+                            balance == 'balance' ?
+                                <button
+                                    disabled={!ableBalance}
+                                    onClick={buyByBalance}
+                                    className="w-full text-sm card-services bg-[#478EB0] disabled:bg-[#478EB0]/50 py-3 rounded-full tracking-widest text-white font-medium flex justify-center">
+                                    {loadingBalance ? <LoadingIcon className='animate-spin w-6 h-6' /> : 'Pay'}
+                                </button>
+                                :
+                                <button
+                                    disabled={!able}
+                                    onClick={buyPackages}
+                                    className="w-full text-sm card-services bg-[#478EB0] disabled:bg-[#478EB0]/50 py-3 rounded-full tracking-widest text-white font-medium flex justify-center">
+                                    {loadingToken ? <LoadingIcon className='animate-spin w-6 h-6' /> : 'Pay'}
+                                </button>
                     }
                 </div>
             </div>
@@ -102,6 +133,9 @@ const Checkout = ({ able, token, }) => {
 
 Checkout.propTypes = {
     able: PropTypes.bool,
-    token: PropTypes.string
+    tokens: PropTypes.array,
+    balance: PropTypes.string,
+    setToken: PropTypes.func,
+    ableBalance: PropTypes.bool
 }
 export default Checkout

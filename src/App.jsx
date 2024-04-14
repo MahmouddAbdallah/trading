@@ -23,6 +23,7 @@ const PreviewPackage = lazy(() => import('./pages/Package/pages/PreviewPackage')
 const CartPackage = lazy(() => import('./pages/Package/pages/CartPackage'));
 const CheckoutPackage = lazy(() => import('./pages/Package/pages/CheckoutPackage'));
 const PaymentPackage = lazy(() => import('./pages/Package/pages/PaymentPackage'));
+const Successfully = lazy(() => import('./pages/Successfully'));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 
@@ -31,7 +32,7 @@ function App() {
     <Suspense fallback={<Loading />}>
       <AppProvider>
         <Router>
-          <Toaster position='bottom-right' toastOptions={{ duration: 4000 }} />
+          <Toaster position='top-right' toastOptions={{ duration: 4000 }} />
           <Routes>
             <Route path='/' element={<LayoutPages />} >
               <Route path='/' index element={<Home />} />
@@ -43,6 +44,7 @@ function App() {
               <Route path='/package/cart' element={<CartPackage />} />
               <Route path='/package/checkout' element={<CheckoutPackage />} />
               <Route path='/package/payment' element={<PaymentPackage />} />
+              <Route path='/successfully' element={<Successfully />} />
             </Route>
             <Route path='/sign-in' element={<SignIn />} />
             <Route path='/sign-up' element={<SignUp />} />

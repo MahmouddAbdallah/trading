@@ -33,7 +33,7 @@ const SignUp = () => {
     }, [sponserId])
 
     useEffect(() => {
-        if (sponserId?.length > 4) {
+        if (sponserId?.length >= 4) {
             searchSponser()
         }
     }, [searchSponser, sponserId?.length])

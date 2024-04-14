@@ -20,10 +20,10 @@ const Packages = () => {
                     <div className='grid grid-cols-12 lg:gap-5 pt-10'>
                         {
 
-                            listd.map(item => {
+                            listd.map((item, i) => {
                                 return (
                                     <div
-                                        key={item.id}
+                                        key={i}
                                         className='col-span-12 md:col-span-6 lg:col-span-4 m-3 card-services rounded-xl overflow-hidden '
                                     >
                                         <Package data={item} />

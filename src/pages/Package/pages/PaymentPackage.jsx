@@ -1,6 +1,6 @@
 import Checkout from "../component/Checkout"
 import paymentpage from '../../../assets/paymentpage.png'
-// import { PayPalIcon, PaymentIcon } from "../../../components/icons";
+// import { PaymentIcon } from "../../../components/icons";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -8,20 +8,31 @@ import { LoadingIcon } from "../../../components/icons";
 import { UseAppContext } from "../../../context/appContext";
 
 const PaymentPackage = () => {
-    const { cart } = UseAppContext();
-    const [checked, setChecked] = useState(false)
+    const { cart, balance } = UseAppContext();
+    const [checked, setChecked] = useState("")
     const [token, setToken] = useState("")
+    const [tokens, setTokens] = useState([])
     const [vaild, setVaild] = useState(true)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const [able, setAble] = useState(false)
+    const [ableBalance, setAbleBalance] = useState(false)
 
     const checkTokenStatus = async () => {
         try {
             setLoading(true)
             const { data } = await axios.get(`/api/User/CheckTokenStatus?tokenNumber=${token}`)
-            setVaild(data)
+            setVaild(data?.isUsed)
             setError("")
+            if (data?.isUsed == false) {
+                if (tokens.includes(token)) {
+                    setError('This token is already')
+                } else {
+                    setTokens([...tokens, token])
+                }
+            } else {
+                setError('This token is used')
+            }
             setAble(true)
             setLoading(false)
         } catch (error) {
@@ -31,6 +42,12 @@ const PaymentPackage = () => {
             setLoading(false)
             console.error(error);
         }
+    }
+
+
+    const newToken = () => {
+        setToken('');
+        setVaild(true)
     }
 
     return (
@@ -43,29 +60,38 @@ const PaymentPackage = () => {
                     <div className=" py-10 grid grid-cols-12 lg:gap-10">
                         <div className="col-span-12 lg:col-span-7">
                             <div className="space-y-5">
-                                {/* <div className="flex gap-5">
+                                <div className="flex gap-5">
                                     <div className="bg-white w-full rounded-md flex justify-between items-center px-5">
                                         <label className="flex items-center py-5 gap-3">
-                                            <input type="radio" className="w-5 h-5" />
+                                            <input
+                                                onChange={() => {
+                                                    setChecked("balance")
+                                                    setAbleBalance(true)
+                                                    setTokens([])
+                                                    setToken("")
+                                                    setVaild(true)
+                                                    setAble(false)
+                                                }}
+                                                checked={checked == 'balance'}
+                                                type="radio"
+                                                className="w-5 h-5" />
                                             <span className="font-light">
                                                 use my sign up balance
                                             </span>
                                         </label>
                                         <div>
-                                            <PaymentIcon />
+                                            My balance : ${balance}
                                         </div>
                                     </div>
-                                    <button className="text-[#458DAE] bg-[#93B9CD] text-xl py-5 px-7 rounded-md">
-                                        +
-                                    </button>
-                                </div> */}
+
+                                </div>
                                 <div className="space-y-3">
                                     <div className="bg-white w-full rounded-md flex justify-between items-center px-5">
                                         <label className="flex items-center py-5 gap-3">
                                             <input
                                                 type="radio"
-                                                checked={checked}
-                                                onChange={() => { setChecked(!checked) }}
+                                                onChange={() => { setChecked("token") }}
+                                                checked={checked == 'token'}
                                                 className="w-5 h-5" />
                                             <span className="font-bold">
                                                 {/* <PayPalIcon /> */}
@@ -73,8 +99,13 @@ const PaymentPackage = () => {
                                             </span>
                                         </label>
                                     </div>
-                                    {checked &&
+                                    {checked == 'token' &&
                                         <div>
+                                            <div className="flex gap-1 pb-1">
+                                                {tokens?.map((item, i) => <span key={item} className="text-xs px-3 py-[2px] rounded-full bg-blue-100 border border-black/20">
+                                                    Token {i + 1} : {item}
+                                                </span>)}
+                                            </div>
                                             <div className="w-full flex items-center gap-3">
                                                 <label className="w-full flex items-center gap-2">
                                                     <span className="font-semibold whitespace-nowrap">Token : </span>
@@ -90,14 +121,18 @@ const PaymentPackage = () => {
                                                     className="py-2 px-5 rounded-md bg-blue-500 text-white">
                                                     {loading ? <LoadingIcon className='animate-spin w-6 h-6' /> : 'Search'}
                                                 </button>
-
+                                                <button
+                                                    onClick={newToken}
+                                                    className="py-2 px-5 rounded-md bg-blue-500 text-white whitespace-nowrap">
+                                                    Add a new token
+                                                </button>
                                             </div>
                                             {error &&
                                                 <div className=" py-2 px-3 text-red-500">
                                                     {error}
                                                 </div>
                                             }
-                                            {vaild == false &&
+                                            {(vaild == false && error == "") &&
                                                 <div className=" py-2 px-3 text-green-500">
                                                     Vaild Token
                                                 </div>
@@ -111,7 +146,7 @@ const PaymentPackage = () => {
                             </div>
                         </div>
                         <div className="col-span-12 lg:col-span-5 mt-10 lg:mt-0">
-                            <Checkout able={able} token={token} />
+                            <Checkout able={able} tokens={tokens} setToken={setToken} balance={checked == "balance" ? 'balance' : ""} ableBalance={ableBalance} />
                         </div>
                     </div>
                 </div>

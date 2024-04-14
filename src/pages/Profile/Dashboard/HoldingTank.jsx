@@ -1,5 +1,15 @@
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const HoldingTank = () => {
+    const getHoldingTank = async () => {
+        try {
+            const { data } = await axios.get('/api/')
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'There is an Error')
+            console.error(error);
+        }
+    }
     return (
         <div>
             <div className="px-5 lg:pr-32">

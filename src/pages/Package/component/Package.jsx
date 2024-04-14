@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { ArrowRightIcon } from '../../../components/icons'
 import { UseAppContext } from '../../../context/appContext'
 const Package = ({ data }) => {
     const { setCart, cart } = UseAppContext()
     const { pathname } = useLocation()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const addToCart = (item) => {
         localStorage.setItem("cart", JSON.stringify([...cart, item]))
         setCart(JSON.parse(localStorage.getItem("cart") || '[]'))
-        navigate('/package/cart')
+        // navigate('/package/cart')
     }
 
     return (
