@@ -28,7 +28,7 @@ const AppProvider = ({ children }) => {
     const fetchPackages = async () => {
         try {
             const { data } = await axios.get('/api/Admin/GetAllPackages')
-            setPackages(data)
+            setPackages(typeof data == 'string' ? [1, 2, 3, 4, 5, 6] : data)
         } catch (error) {
             toast.error(error?.response?.data || "Can not get packages")
             console.error(error);
@@ -37,7 +37,6 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchPackages()
     }, []);
-
 
     const getBalance = useCallback(async () => {
         try {

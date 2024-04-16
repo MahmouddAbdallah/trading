@@ -118,31 +118,38 @@ const Navbar = () => {
                     </div>
                     <div className='px-10 space-y-10'>
                         <ul className='space-y-3'>
-                            <li>
-                                <div
-                                    className="flex items-center gap-3 "
-                                    onClick={() => setOpenDrop(!openDrop)}
-                                >
-                                    <div className="bg-red-500 flex justify-center items-center w-10 h-10 rounded-full font-bold text-white">
-                                        {user?.name?.split('')[0]}
-                                    </div>
-                                    <div>
-                                        <span className="block font-medium"> {user?.name}</span>
-                                        <span className="block text-xs font-medium"> {user?.email}</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li >
-                                <Link
-                                    to={'/p/dashboard'}
-                                    className={`text-decoration-none text-black font-bold`}
-                                >
-                                    Dashboard
-                                </Link>
-                            </li>
+                            {
+                                user ? <>
+                                    <li>
+                                        <div
+                                            className="flex items-center gap-3 "
+                                            onClick={() => setOpenDrop(!openDrop)}
+                                        >
+                                            <div className="bg-red-500 flex justify-center items-center w-10 h-10 rounded-full font-bold text-white">
+                                                {user?.name?.split('')[0]}
+                                            </div>
+                                            <div>
+                                                <span className="block font-medium"> {user?.name}</span>
+                                                <span className="block text-xs font-medium"> {user?.email}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li >
+                                        <Link
+                                            to={'/p/dashboard'}
+                                            onClick={() => setOpen(false)}
+                                            className={`text-decoration-none text-black font-bold`}
+                                        >
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                </>
+                                    : ""
+                            }
                             {navs.map(nav => (
                                 <li key={nav.href}>
                                     <Link
+                                        onClick={() => setOpen(false)}
                                         to={nav.href}
                                         className={`text-decoration-none text-black font-bold`}
                                     >
