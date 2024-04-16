@@ -1,12 +1,12 @@
-import hero from '../assets/our-value.jpg'
+import hero from '../assets/Vissions.png'
 import BlueLine from './BlueLine'
 const Vissions = () => {
     return (
-        <section className="p-container pt-60 sm:pt-64 pb-20">
+        <section className="p-container pt-52 sm:pt-64 pb-20">
             <div className='p-[1px] rounded-[60px] bg-gradient-to-l from-black/50 to-white'>
                 <div className="lg:px-5 rounded-[60px] bg-bgColor">
-                    <div className='relative h-20 sm:h-48 md:h-56 lg:h-72 flex justify-center'>
-                        <div className='absolute px-5 -top-44 sm:-top-52 md:-top-40'>
+                    <div className='relative h-16 OurValuePadding sm:h-48 md:h-56 lg:h-52 flex justify-center'>
+                        <div className='absolute px-5 -top-24 sm:-top-32 md:-top-40'>
                             <img src={hero} className='rounded-3xl card-services' alt="" />
                         </div>
                     </div>

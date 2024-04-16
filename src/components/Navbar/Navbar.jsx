@@ -25,8 +25,8 @@ const Navbar = () => {
     return (
         <nav className='pt-5 lg:pt-10 p-container'>
             <div className={`flex items-center justify-between border-[3px] border-white px-5 lg:px-10 py-2 lg:py-3 rounded-full nav-gradient ${style.shadowNav}`}>
-                <Link to={'/'} className="w-28 block">
-                    <img src={logo} className="w-20 lg:w-24" alt="" />
+                <Link to={'/'} className="block">
+                    <img src={logo} className="w-[95px] lg:w-28 brightness-110" alt="" />
                 </Link>
                 <ul className='hidden md:flex gap-5'>
                     {navs.map(nav => (

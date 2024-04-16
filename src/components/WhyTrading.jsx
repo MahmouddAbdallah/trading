@@ -1,6 +1,7 @@
 import hero from '../assets/WhyTrading.png'
 import WhySection from '../assets/WhySection.png'
-import BlueLine from './BlueLine'
+import BlueLine from './BlueLine';
+
 const WhyTrading = () => {
     return (
         <section className="p-container pt-32 pb-10 relative ">
@@ -21,27 +22,27 @@ const WhyTrading = () => {
                         </p>
                     </div>
                 </div>
-                <div className='grid grid-cols-12 gap-5 mt-5 lg:mt-12'>
+                <div className='grid grid-cols-12 lg:gap-10 mt-5'>
                     <div className='col-span-12 lg:col-span-6'>
                         <img src={hero} alt="" />
                     </div>
-                    <div className='col-span-12 lg:col-span-6 space-y-14 flex flex-col justify-center'>
+                    <div className='col-span-12 lg:col-span-6 space-y-14 flex flex-col justify-center mt-10 lg:mt-0'>
                         <ul className='space-y-5'>
                             <li className='flex gap-2'>
                                 <div><div className='w-4 h-4 bg-[#285D89] rounded-full shadow-lg shadow-black/70 mt-[6px]' /></div>
-                                <span className='text-[#285D89] font-medium lg:text-lg'>
+                                <span className='text-[#285D89] font-medium'>
                                     Comprehensive and in-depth courses in the world of foreign exchange and digital currencies starting from scratch to mastery.
                                 </span>
                             </li>
                             <li className='flex gap-2'>
                                 <div><div className='w-4 h-4 bg-[#285D89] rounded-full shadow-lg shadow-black/70 mt-[6px]' /></div>
-                                <span className='text-[#285D89] font-medium lg:text-lg'>
+                                <span className='text-[#285D89] font-medium'>
                                     Covering all aspects of trading including a comprehensive trading course, beginning from the basics of trading (Forex) to advanced trading strategies.
                                 </span>
                             </li>
                             <li className='flex gap-2'>
                                 <div><div className='w-4 h-4 bg-[#285D89] rounded-full shadow-lg shadow-black/70 mt-[6px]' /></div>
-                                <span className='text-[#285D89] font-medium lg:text-lg'>
+                                <span className='text-[#285D89] font-medium'>
                                     Providing learners with the knowledge they need to succeed in financial markets, specifically designed for beginners, covering all trading fundamentals in addition to some concepts presented in a simplified, easy-to-understand manner.
                                 </span>
                             </li>
