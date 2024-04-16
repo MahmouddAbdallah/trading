@@ -9,7 +9,7 @@ const ContactUs = () => {
             </div>
             <section >
                 <div className='p-container pt-10 pb-20'>
-                    <div className="grid grid-cols-12 gap-10">
+                    <div className="grid grid-cols-12 lg:gap-10">
                         <div className="col-span-12 lg:col-span-4 space-y-5">
                             <div className='space-y-4'>
                                 <h4 className='font-Roboto font-semibold text-4xl md:text-5xl lg:text-5xl text-blueText'>Let&lsquo;s talk with us</h4>
@@ -39,8 +39,8 @@ const ContactUs = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className='col-span-2' />
-                        <div className="col-span-12 lg:col-span-6">
+                        <div className='col-span-12 lg:col-span-2' />
+                        <div className="col-span-12 lg:col-span-6 mt-10 lg:mt-0">
                             <form className='card-services rounded-3xl px-6 py-6 w-full space-y-5'>
                                 <div className='space-y-6'>
                                     <div className='flex gap-5'>
