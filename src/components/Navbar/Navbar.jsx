@@ -137,7 +137,10 @@ const Navbar = () => {
                                     <li >
                                         <Link
                                             to={'/p/dashboard'}
-                                            onClick={() => setOpen(false)}
+                                            onClick={() => {
+                                                setOpen(false)
+                                                document.body.style.overflowY = 'auto'
+                                            }}
                                             className={`text-decoration-none text-black font-bold`}
                                         >
                                             Dashboard
@@ -149,7 +152,10 @@ const Navbar = () => {
                             {navs.map(nav => (
                                 <li key={nav.href}>
                                     <Link
-                                        onClick={() => setOpen(false)}
+                                        onClick={() => {
+                                            setOpen(false)
+                                            document.body.style.overflowY = 'auto'
+                                        }}
                                         to={nav.href}
                                         className={`text-decoration-none text-black font-bold`}
                                     >
