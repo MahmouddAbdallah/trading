@@ -44,7 +44,6 @@ const PaymentPackage = () => {
         }
     }
 
-
     const newToken = () => {
         setToken('');
         setVaild(true)
@@ -106,7 +105,7 @@ const PaymentPackage = () => {
                                                     Token {i + 1} : {item}
                                                 </span>)}
                                             </div>
-                                            <div className="w-full flex items-center gap-3">
+                                            <div className="w-full flex flex-col sm:flex-row sm:items-center gap-3">
                                                 <label className="w-full flex items-center gap-2">
                                                     <span className="font-semibold whitespace-nowrap">Token : </span>
                                                     <input
@@ -118,7 +117,7 @@ const PaymentPackage = () => {
                                                 </label>
                                                 <button
                                                     onClick={checkTokenStatus}
-                                                    className="py-2 px-5 rounded-md bg-blue-500 text-white">
+                                                    className="py-2 px-5 rounded-md bg-blue-500 text-white flex justify-center">
                                                     {loading ? <LoadingIcon className='animate-spin w-6 h-6' /> : 'Search'}
                                                 </button>
                                                 <button
