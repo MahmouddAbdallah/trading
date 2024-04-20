@@ -13,19 +13,19 @@ const Slider = () => {
         <Slide
             key={1}
             title={'The best for the Trading.'}
-            text={'Trading in financial markets involves buying and selling assets such as stocks, currencies, and commodities with the aim of capitalizing on market fluctuations to generate profits."'}
+            text={'Offering comprehensive educational courses aimed at helping individuals gain knowledge and attain financial wealth.'}
             img={slide1}
         />,
         <Slide
             key={1}
             title={'Profit from trading.'}
-            text={'Trading is a dynamic process where individuals or entities engage in the buying and selling of financial instruments, leveraging market trends and analysis to achieve financial objectives and maximize returns."'}
+            text={'Ensuring our training courses are delivered in an advanced and engaging manner, as they are crucial not only for personal development but also for achieving financial success.'}
             img={slide2}
         />,
         <Slide
             key={1}
             title={'Trade for gain.'}
-            text={'Trading encompasses the strategic exchange of financial instruments, where investors capitalize on market movements to achieve desired outcomes and optimize their investment portfolios."'}
+            text={'Training participants to navigate and engage effectively in various financial markets, while also preparing skilled professionals in digital currencies, foreign exchange, marketing, and other online business fields'}
             img={slide3}
         />,
     ]
@@ -38,6 +38,7 @@ const Slider = () => {
                     modules={[Navigation, Pagination, Autoplay]}
                     loop={true}
                     pagination={{ el: ".pclic", clickable: true }}
+                    navigation={{ nextEl: ".next" }}
                     autoplay={
                         { delay: 4000 }
                     }

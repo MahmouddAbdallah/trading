@@ -1,5 +1,5 @@
 import hero from '../../assets/contact-hero.jpg'
-import { EmailIcon, LocationIcon, PhoneIcon } from '../../components/icons'
+import { EmailIcon, PhoneIcon } from '../../components/icons'
 const ContactUs = () => {
     return (
         <>
@@ -18,23 +18,23 @@ const ContactUs = () => {
                                 </p>
                             </div>
                             <ul className='space-y-2'>
-                                <li className='flex gap-3'>
+                                {/* <li className='flex gap-3'>
                                     <LocationIcon className={'w-6 h-6'} />
                                     <span className='text-lg text-[#004060] font-bold'>
                                         1055 Arthur ave Elk Groot, 67.
                                         New Palmas South Carolina.
                                     </span>
-                                </li>
+                                </li> */}
                                 <li className='flex gap-3'>
                                     <PhoneIcon className={'w-6 h-6'} />
                                     <span className='text-lg text-[#004060] font-bold'>
-                                        +1 234 676 9106 99
+                                        01149507221
                                     </span>
                                 </li>
                                 <li className='flex gap-3'>
                                     <EmailIcon className={'w-6 h-6'} />
                                     <span className='text-lg text-[#004060] font-bold'>
-                                        Contact@moralizer.com
+                                        info@trading-business-academy.com
                                     </span>
                                 </li>
                             </ul>

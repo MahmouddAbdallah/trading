@@ -19,14 +19,14 @@ const ServicesSlides = () => {
     };
 
     const cards = [
-        { id: 'c1', backgroundColor: img2, icon: '1', title: 'Live trading', description: '100 TOPIC' },
-        { id: 'c2', backgroundColor: img1, icon: '2', title: 'Live trading', description: '100 TOPIC' },
-        { id: 'c3', backgroundColor: img3, icon: '3', title: 'Live trading', description: '100 TOPIC' },
-        { id: 'c4', backgroundColor: img4, icon: '4', title: 'Live trading', description: '100 TOPIC' }
+        { id: 'c1', backgroundColor: img2, icon: '1', title: 'Online Courses', description: '100 TOPIC' },
+        { id: 'c2', backgroundColor: img1, icon: '2', title: 'Offline Courses', description: '100 TOPIC' },
+        { id: 'c3', backgroundColor: img3, icon: '3', title: 'Group Signal', description: '100 TOPIC' },
+        { id: 'c4', backgroundColor: img4, icon: '4', title: 'Live Trading', description: '100 TOPIC' }
     ];
 
     return (
-        <div className="flex flex-col lg:grid grid-cols-12 card-services px-5 py-10 rounded-xl bg-bgColor">
+        <div className="flex flex-col lg:grid grid-cols-12 card-services px-2 md:px-5 py-10 rounded-xl bg-bgColor">
             <div className="flex items-center col-span-3 ">
                 <div className="space-y-3">
                     <h3 className="font-Roboto font-semibold text-4xl md:text-5xl lg:text-5xl text-blueText">Services</h3>
@@ -44,13 +44,13 @@ const ServicesSlides = () => {
                             <input style={{ display: 'none' }} type="radio" name="slide" id={card.id} defaultChecked={activeIndex === index} />
                             <label htmlFor={card.id}
                                 onMouseEnter={() => handleMouseEnter(index)}
-                                className={`page-services-card rounded-md md:rounded-lg lg:rounded-xl mx-2 lg:mx-3 ${activeIndex === index && 'active'}`}
+                                className={`page-services-card rounded-md md:rounded-lg lg:rounded-xl mx-[2px] sm:mx-1 md:mx-3 ${activeIndex === index && 'active'}`}
                                 style={{
                                     backgroundImage: `url(${card.backgroundColor})`
                                 }}
                             >
                                 <div className="w-full textHeadandP text-white flex justify-between items-center px-3 md:px-5 py-5 mb-4 md:mb-8">
-                                    <h4 className="font-[400] font-Roboto text-lg sm:text-xl md:text-2xl lg:text-3xl leading-[20px]">{card.title}</h4>
+                                    <h4 className="font-[400] font-Roboto text-sm sm:text-xl md:text-2xl lg:text-3xl leading-[14px] md:leading-[20px]">{card.title}</h4>
                                     <p className="whitespace-nowrap hidden text-xs md:text-base">{card.description}</p>
                                 </div>
                             </label>

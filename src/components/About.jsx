@@ -16,9 +16,7 @@ const WhyTrading = () => {
                     <BlueLine />
                     <div className="w-10/12 lg:w-[60%]">
                         <p className="text-blueText/70">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                            molestiae quas vel sint commodi epudiandae raesentium
-                            optio, eaque rerum!
+                            For Education, Trading, and Marketing is to be a leading global provider of comprehensive educational resources, advanced trading tools, and impactful marketing
                         </p>
                     </div>
                 </div>

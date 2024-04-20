@@ -8,17 +8,17 @@ const Services = () => {
     const services = [
         {
             img: img1,
-            title: 'Live trading',
+            title: 'Online Courses',
             desc: 'Online courses on trading offer comprehensive instruction on various aspects of financial markets, equipping learners with knowledge of strategies'
         },
         {
             img: img2,
-            title: 'Offline meting',
+            title: 'Offline Courses',
             desc: 'Offline courses on trading provide hands-on learning experiences through in-person instruction, workshops, and mentorship'
         },
         {
             img: img3,
-            title: 'Signal Cramp',
+            title: 'Group Signal',
             desc: 'Signal groups in trading are online communities where traders share real-time buy or sell signals, market analysis, and insights'
         }
     ]
@@ -32,7 +32,7 @@ const Services = () => {
             <div className='xl:px-10'>
                 <ul className='flex flex-wrap sm:grid grid-cols-6 gap-40 sm:gap-20 lg:gap-24 xl:gap-28'>
                     {services.map(item => (
-                        <li key={item.img} className=' sm:col-span-3 xl:col-span-2 bg-bgColor'>
+                        <li key={item.img} className=' sm:col-span-3 xl:col-span-2 bg-bgColor sm:mt-12 lg:mt-0'>
                             <div className='border py-20 px-5 shadow-lg rounded-xl flex flex-col items-center relative card-services h-full'>
                                 <div className='absolute -top-24'>
                                     <img className='w-44' src={item.img} alt="" />
