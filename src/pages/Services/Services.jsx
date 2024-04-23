@@ -100,7 +100,7 @@ const Services = () => {
           </ul>
         </div>
       </section>
-      <div className='absolute -z-10 left-0 bottom-[850px]'>
+      <div className='absolute -z-10 left-0 bottom-[850px] hidden lg:block'>
         <img src={WhySection} className='w-28' alt="" />
       </div>
     </div>

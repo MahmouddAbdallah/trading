@@ -1,6 +1,32 @@
+import { useForm } from 'react-hook-form'
 import hero from '../../assets/contact-hero.jpg'
-import { EmailIcon, PhoneIcon } from '../../components/icons'
+import { EmailIcon, LoadingIcon, PhoneIcon } from '../../components/icons'
+import { useState } from 'react'
+import { toast } from 'react-hot-toast'
+import axios from 'axios'
+import ErrorMsg from '../../components/ErrorMsg'
 const ContactUs = () => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const [loading, setLoading] = useState(false)
+
+    const onSubmit = handleSubmit(async (formData) => {
+        try {
+            setLoading(true)
+            await axios.post('/api/TicketSupport/ContactInfo', {
+                fullName: `${formData.first_name} ${formData.last_name}`,
+                userEmail: formData.email,
+                phoneNumber: formData.phone,
+                message: formData.message
+            })
+            toast.success('Succeffully submitted!!')
+            reset()
+            setLoading(false)
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'There is an Error')
+            setLoading(false)
+            console.error(error);
+        }
+    })
     return (
         <>
             <div className=" py-10 lg:py-20 relative flex items-center">
@@ -41,38 +67,58 @@ const ContactUs = () => {
                         </div>
                         <div className='col-span-12 lg:col-span-2' />
                         <div className="col-span-12 lg:col-span-6 mt-10 lg:mt-0">
-                            <form className='card-services rounded-3xl px-6 py-6 w-full space-y-5'>
+                            <form onSubmit={onSubmit} className='card-services rounded-3xl px-6 py-6 w-full space-y-5'>
                                 <div className='space-y-6'>
                                     <div className='flex gap-5'>
-                                        <input
-                                            type="text"
-                                            placeholder='John'
-                                            className='inputInnerStyle'
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder='Last Name*'
-                                            className='inputInnerStyle'
-                                        />
+                                        <div>
+                                            <input
+                                                type="text"
+                                                {...register('first_name', { required: 'Please enter first name' })}
+                                                placeholder='First Name'
+                                                className='inputInnerStyle'
+                                            />
+                                            <ErrorMsg message={errors?.first_name?.message} />
+                                        </div>
+                                        <div>
+                                            <input
+                                                type="text"
+                                                {...register('last_name', { required: 'Please enter last name' })}
+                                                placeholder='Last Name*'
+                                                className='inputInnerStyle'
+                                            />
+                                            <ErrorMsg message={errors?.last_name?.message} />
+                                        </div>
                                     </div>
-                                    <input
-                                        type="text"
-                                        placeholder='Email*'
-                                        className='inputInnerStyle'
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder='Phone Number*'
-                                        className='inputInnerStyle'
-                                    />
-                                    <textarea
-                                        placeholder='Your message...'
-                                        className='h-32 rounded-xl resize-none  py-2 px-2 bg-inputColor border innerShadow w-full placeholder:text-inputPlaceholder placeholder:font-semibold outline-none'>
-                                    </textarea>
+                                    <div>
+                                        <input
+                                            type="text"
+                                            {...register('email', { required: 'Please enter email ' })}
+                                            placeholder='Email*'
+                                            className='inputInnerStyle'
+                                        />
+                                        <ErrorMsg message={errors?.email?.message} />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="text"
+                                            {...register('phone', { required: 'Please enter phone ' })}
+                                            placeholder='Phone Number*'
+                                            className='inputInnerStyle'
+                                        />
+                                        <ErrorMsg message={errors?.phone?.message} />
+                                    </div>
+                                    <div>
+                                        <textarea
+                                            placeholder='Your message...'
+                                            {...register('message', { required: 'Please enter message ' })}
+                                            className='h-32 rounded-xl resize-none  py-2 px-2 bg-inputColor border innerShadow w-full placeholder:text-inputPlaceholder placeholder:font-semibold outline-none'>
+                                        </textarea>
+                                        <ErrorMsg message={errors?.message?.message} />
+                                    </div>
                                 </div>
                                 <button
-                                    className={'btn-blue-gradient w-full px-10 py-3 rounded-full text-white text-sm lg:text-base card-services'}>
-                                    SEND MESSAGE
+                                    className={'btn-blue-gradient w-full px-10 py-3 rounded-full text-white text-sm lg:text-base card-services flex justify-center items-center'}>
+                                    {loading ? <LoadingIcon className='animate-spin w-6 h-6' /> : 'SEND MESSAGE'}
                                 </button>
                             </form>
                         </div>
