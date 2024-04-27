@@ -6,8 +6,9 @@ import { useCallback, useEffect, useState } from 'react'
 import OptionCountries from '../components/OptionCountries'
 import toast from 'react-hot-toast'
 import clsx from 'clsx';
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { LoadingIcon } from '../components/icons'
+import { UseAppContext } from '../context/appContext'
 
 const SignUp = () => {
     const { register, setValue, formState: { errors }, handleSubmit } = useForm();
@@ -64,6 +65,10 @@ const SignUp = () => {
         }
     })
 
+    const { user } = UseAppContext()
+    if (user) {
+        return <Navigate to={'/'} />
+    }
     return (
         <div className='p-container h-screen'>
             <div className="grid grid-cols-12 gap-0 lg:gap-20 h-full">

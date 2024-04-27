@@ -1,10 +1,10 @@
 import axios from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { UseAppContext } from "../../../context/appContext"
+import { UseAppContext } from "../../context/appContext"
 import { toast } from "react-hot-toast"
-import ErrorMsg from "../../../components/ErrorMsg"
-import { LoadingIcon } from "../../../components/icons"
+import ErrorMsg from "../../components/ErrorMsg"
+import { LoadingIcon } from "../../components/icons"
 const Transfer = () => {
     const { register, setValue, reset, handleSubmit, formState: { errors } } = useForm()
     const { user, balance } = UseAppContext()

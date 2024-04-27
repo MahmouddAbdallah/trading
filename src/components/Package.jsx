@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
-import { ArrowRightIcon } from '../../../components/icons'
-import { UseAppContext } from '../../../context/appContext'
+import { UseAppContext } from '../context/appContext'
+import { ArrowRightIcon } from './icons'
 const Package = ({ data }) => {
     const { setCart, cart } = UseAppContext()
     const { pathname } = useLocation()

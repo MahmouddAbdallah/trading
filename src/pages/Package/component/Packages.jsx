@@ -1,6 +1,6 @@
 import WhySection from '../../../assets/WhySection.png'
 import { UseAppContext } from '../../../context/appContext'
-import Package from './Package'
+import Package from '../../../components/Package'
 
 const Packages = () => {
     const { packages, cart } = UseAppContext()

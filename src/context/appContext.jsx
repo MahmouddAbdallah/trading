@@ -38,6 +38,7 @@ const AppProvider = ({ children }) => {
         fetchPackages()
     }, []);
 
+
     const getBalance = useCallback(async () => {
         try {
             const { data } = await axios.get(`/api/BankController/LastSignupBalance?userId=${user?.customerAttributeId}`)

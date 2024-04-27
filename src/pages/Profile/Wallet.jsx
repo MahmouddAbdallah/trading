@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
-import TableData from '../component/TableData'
+import TableData from './component/TableData'
 import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
-import { UseAppContext } from '../../../context/appContext'
+import { UseAppContext } from '../../context/appContext'
 const EwalletAccountHistory = () => {
     const { user } = UseAppContext()
     const [data, setData] = useState([])

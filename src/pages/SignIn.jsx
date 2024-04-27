@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import hero from '../assets/SignIn.png'
 import { useForm } from 'react-hook-form'
 import ErrorMsg from '../components/ErrorMsg'
@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { LoadingIcon } from '../components/icons'
 import clsx from 'clsx'
 import ForgetPassword from '../components/ForgetPassword'
+import { UseAppContext } from '../context/appContext'
 
 const SingIn = () => {
     const [loading, setLoading] = useState(false)
@@ -36,9 +37,10 @@ const SingIn = () => {
         }
     })
 
-    // if (token) {
-    //     return <Navigate to={'/'} />
-    // }
+    const { user } = UseAppContext()
+    if (user) {
+        return <Navigate to={'/'} />
+    }
     return (
         <div className='p-container h-screen'>
             <div className="grid grid-cols-12 gap-0 lg:gap-20 h-full">

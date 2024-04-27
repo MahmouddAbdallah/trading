@@ -1,6 +1,5 @@
 .sidebarBtnShadow{
     box-shadow: 3px 3px 10px #00000045, -8px -8px 8px white;
-    @apply flex items-center gap-5 py-5 shadow-lg px-8 rounded-md;
 }
 
 @media (max-width:  1024px) {

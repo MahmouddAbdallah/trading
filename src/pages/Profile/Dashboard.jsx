@@ -1,5 +1,5 @@
 import { CartesianGrid, Line, Tooltip, LineChart, ResponsiveContainer, XAxis } from "recharts"
-import SampleChart from "../component/Pie";
+import SampleChart from "./component/Pie";
 
 const Dashboard = () => {
     const data = [
@@ -41,7 +41,7 @@ const Dashboard = () => {
     ];
     return (
         <div className="w-full px-5 md:px-10 lg:px-0">
-            <div className='mb-16'>
+            <div className='mb-16 flex'>
                 <SampleChart />
             </div>
             <div className="flex flex-wrap gap-14 lg:gap-32">

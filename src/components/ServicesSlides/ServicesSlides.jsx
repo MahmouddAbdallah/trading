@@ -49,7 +49,7 @@ const ServicesSlides = () => {
                                     backgroundImage: `url(${card.backgroundColor})`
                                 }}
                             >
-                                <div className="w-full textHeadandP text-white flex justify-between items-center px-3 md:px-5 py-5 mb-4 md:mb-8">
+                                <div className="w-full textHeadandP text-white flex justify-between items-center px-3 md:px-5 py-5 mb-8 md:mb-8">
                                     <h4 className="font-[400] font-Roboto text-sm sm:text-xl md:text-2xl lg:text-3xl leading-[14px] md:leading-[20px]">{card.title}</h4>
                                     <p className="whitespace-nowrap hidden text-xs md:text-base">{card.description}</p>
                                 </div>
