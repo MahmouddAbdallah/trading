@@ -47,7 +47,11 @@ const Package = ({ data }) => {
                         </div>
                     </div>
                 </div> :
-                <div className={`${!data.id && 'h-64 bg-slate-300 animate-pulse'}`}>
+                <div>
+                    <div className={`${!data.id && 'h-64 bg-slate-300 animate-pulse'}`} />
+                    <div className='w-72 h-5 bg-slate-300 rounded-3xl m-3 animate-pulse' />
+                    <div className='w-52 h-5 bg-slate-300 rounded-3xl m-3 animate-pulse' />
+                    <div className='w-80 h-5 bg-slate-300 rounded-3xl m-3 animate-pulse' />
                 </div>
             }
         </>

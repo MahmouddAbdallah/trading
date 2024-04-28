@@ -5,6 +5,7 @@ import axios from 'axios'
 import Loading from './components/Loading'
 import AppProvider from './context/appContext'
 import { checkExpiration, setExpirationTime } from './lib/clearLocalStorage'
+import VideoDetails from './pages/VideoDetails/VideoDetails'
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
@@ -36,7 +37,6 @@ function App() {
     const intervalId = setInterval(checkExpiration, 1000);
     return () => clearInterval(intervalId);
   }, []);
-
   return (
     <Suspense fallback={<Loading />}>
       <AppProvider>
@@ -53,6 +53,7 @@ function App() {
               <Route path='/package/cart' element={<CartPackage />} />
               <Route path='/package/checkout' element={<CheckoutPackage />} />
               <Route path='/package/payment' element={<PaymentPackage />} />
+              <Route path='/course/:id' element={<VideoDetails />} />
               <Route path='/successfully' element={<Successfully />} />
             </Route>
             <Route path='/p' element={<LayoutProfile />} >

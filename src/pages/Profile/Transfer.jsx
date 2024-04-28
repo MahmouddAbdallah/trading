@@ -14,7 +14,7 @@ const Transfer = () => {
     const [loadingSearch, setloadingSearch] = useState(false)
     const [able, setAble] = useState(false)
     const [userSponserId, setUserSponserId] = useState({})
-
+    const [ableTrnBtn, setAbleTrnBtn] = useState(false)
 
     const getUser = async (e) => {
         try {
@@ -117,6 +117,7 @@ const Transfer = () => {
                                     Top Account
                                 </span>
                                 <input
+                                    type="text"
                                     placeholder="ID"
                                     value={sponserId}
                                     disabled={able}
@@ -124,7 +125,6 @@ const Transfer = () => {
                                         setSponserId(e.target.value)
                                         setOpen(false);
                                     }}
-                                    type="text"
                                     className='py-[9px] px-3 bg-inputColor border innerShadow rounded-full disabled:font-medium placeholder:text-inputPlaceholder placeholder:font-semibold outline-none w-[80%]'
                                 />
                             </label>
@@ -136,7 +136,8 @@ const Transfer = () => {
                                                 e.preventDefault();
                                                 setValue('userSponserId', userSponserId)
                                                 setOpen(false)
-                                                setAble(true)
+                                                setAble(sponserId == user?.referId ? false : true)
+                                                setAbleTrnBtn(sponserId == user?.referId ? false : true)
                                             }}
                                             className="w-full bg-white rounded-b-xl px-3 py-2">
                                             <div className="flex items-center gap-3 py-2">
@@ -176,7 +177,7 @@ const Transfer = () => {
                         CANCEL
                     </button>
                     <button
-                        disabled={loading}
+                        disabled={loading || (sponserId == user?.referId) || (!ableTrnBtn)}
                         className="text-sm card-services bg-[#478EB0] disabled:bg-[#478EB0]/50 px-10 py-3 rounded-full tracking-widest text-white font-medium">
                         {loading ? <LoadingIcon className='animate-spin w-5 h-5' /> : 'TRANSFER'}
                     </button>

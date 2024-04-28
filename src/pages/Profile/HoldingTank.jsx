@@ -6,6 +6,7 @@ import { UseAppContext } from "../../context/appContext";
 const HoldingTank = () => {
     const [tanks, setTanks] = useState([]);
     const { user } = UseAppContext()
+    const [open, setOpen] = useState(false);
     const getHoldingTank = useCallback(
         async () => {
             try {
@@ -39,13 +40,17 @@ const HoldingTank = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {tanks?.length == 0 ?
+                                <tr>
+                                    <td colSpan={4} className="px-5 lg:px-8 py-3 text-center">No Records found</td>
+                                </tr>
+                                :
                                 tanks?.map(item =>
                                     <tr key={item.customerAttributeId}>
                                         <td className="px-5 lg:px-8 py-3">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full flex justify-center items-center text-white bg-blue-500">
-                                                    J
+                                                    {item?.name?.split('')[0]}
                                                 </div>
                                                 <span className="text-sm lg:text-base whitespace-nowrap">
                                                     {item.name}
@@ -57,11 +62,24 @@ const HoldingTank = () => {
                                         </td>
                                         <td className="px-5 lg:px-8 py-3 ">{item.backOfficeId}</td>
                                         <td className="px-5 lg:px-8 py-3 ">
-                                            <button className="p-3 bg-[#0AF859] text-white rounded-md">{item.status}</button>
+                                            <button
+                                                disabled={item.status == 'Active' && !item.hasParent ? false : true}
+                                                onClick={() => { setOpen(!open) }}
+                                                className={`p-3 ${item.status == 'Active' && !item.hasParent ? 'bg-[#0AF859]' : "bg-red-500"} text-white rounded-md`}>
+                                                {item.status}
+                                            </button>
+                                            {open &&
+                                                <div className="fixed bg-black/10 top-0 left-0 h-svh w-svw z-50 flex justify-center">
+                                                    <div className="w-full md:w-[500px] bg-white h-80 rounded-md">
+
+                                                    </div>
+                                                </div>
+                                            }
                                         </td>
                                     </tr>
                                 )
                             }
+
                         </tbody>
                     </table>
                 </div>

@@ -38,6 +38,16 @@ const Sidebar = ({ open, setOpen }) => {
             href: "dashboard",
         },
         {
+            id: 2,
+            name: "My Business",
+            icon: <BusinessIcon className={
+                pathname.split("/")[2] == 'business'
+                    ? 'stroke-white fiill'
+                    : 'fill-[#003966]'}
+            />,
+            href: "business",
+        },
+        {
             id: 6,
             name: "Holding Tank",
             icon: <HoldingIcon className={` 
@@ -60,16 +70,6 @@ const Sidebar = ({ open, setOpen }) => {
                 }`}
             />,
             href: "transfer",
-        },
-        {
-            id: 2,
-            name: "My Business",
-            icon: <BusinessIcon className={
-                pathname.split("/")[2] == 'business'
-                    ? 'stroke-white fiill'
-                    : 'fill-[#003966]'}
-            />,
-            href: "business",
         },
         {
             id: 3,

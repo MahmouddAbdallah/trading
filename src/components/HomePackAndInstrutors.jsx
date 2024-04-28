@@ -1,9 +1,9 @@
 import Instrutors from "./Instrutors"
-import { ArrowCircle, ClockIcon, VideoIcon } from "./icons"
+import { ArrowCircle } from "./icons"
 import laba from '../assets/laba.png'
 import { useEffect, useState } from "react"
 import axios from "axios"
-import Stars from "./Stars"
+import Course from "./Course"
 
 
 const HomePackAndInstrutors = () => {
@@ -53,58 +53,9 @@ const HomePackAndInstrutors = () => {
                                 return (
                                     i < 2 &&
                                     <div
-                                        key={i}
-                                        className={`col-span-12 md:col-span-6 m-3 card-services rounded-xl  ${i < 2 ? '-mt-0' : 'mt-10 lg:-mt-14 '}`}
-                                    >
-                                        <>
-                                            {item.courseId ?
-                                                <div>
-                                                    <div className='p-3'>
-                                                        <img
-                                                            className='w-full h-[290px] rounded-lg'
-                                                            src={item?.coursePhoto}
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                    <div className='px-5'>
-                                                        <div className="space-y-2">
-                                                            <div>
-                                                                <div className='flex justify-between'>
-                                                                    <span>
-                                                                        {item.shortDesc}
-                                                                    </span>
-                                                                    <Stars rate={item.rate} />
-                                                                </div>
-                                                                <div>
-                                                                    <span className="text-[#428BAD] font-semibold">
-                                                                        ${item.price}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="border-t border-black/50 pt-2 border-dashed flex gap-5">
-                                                                <div className="flex gap-1 items-center">
-                                                                    <ClockIcon className={'w-6 h-6'} />
-                                                                    <span className="text-black/40 text-sm">
-                                                                        {item.totalHouers}hr
-                                                                    </span>
-                                                                </div>
-                                                                <div className="flex gap-1 items-center">
-                                                                    <VideoIcon className={'w-6 h-6'} />
-                                                                    <span className="text-black/40 text-sm">
-                                                                        {item.numberLecture} Courses
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="flex justify-center relative pb-5">
-                                                                <button className="px-10 py-2 rounded-full btn-blue-gradient text-white font-medium absolute card-services">Join Course</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> :
-                                                <div className={`${!item.id && 'h-64 bg-slate-300 animate-pulse'}`}>
-                                                </div>
-                                            }
-                                        </>
+                                        className={`col-span-12 md:col-span-6 m-3 card-services rounded-xl mt-10  ${i < 2 ? '-mt-0' : 'mt-10 lg:-mt-14 '}`}
+                                        key={i}>
+                                        <Course data={item} />
                                     </div>
                                 )
                             })
@@ -127,7 +78,7 @@ const HomePackAndInstrutors = () => {
                                     i < 2 &&
                                     <div
                                         key={i}
-                                        className={`col-span-12 md:col-span-6 m-3 card-services rounded-xl overflow-hidden ${i < 2 ? '-mt-0' : 'mt-0 lg:-mt-14 '}`}
+                                        className={`col-span-12 md:col-span-6 m-3 card-services rounded-xl overflow-hidden mt-10 ${i < 2 ? '-mt-0' : 'mt-0 lg:-mt-14 '}`}
                                     >
                                         <Instrutors data={item} />
                                     </div>
