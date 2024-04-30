@@ -28,6 +28,7 @@ const CartPackage = lazy(() => import('./pages/Package/pages/CartPackage'));
 const CheckoutPackage = lazy(() => import('./pages/Package/pages/CheckoutPackage'));
 const PaymentPackage = lazy(() => import('./pages/Package/pages/PaymentPackage'));
 const Successfully = lazy(() => import('./pages/Successfully'));
+const OurCourses = lazy(() => import('./pages/OurCourses'));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 function App() {
@@ -54,6 +55,7 @@ function App() {
               <Route path='/package/checkout' element={<CheckoutPackage />} />
               <Route path='/package/payment' element={<PaymentPackage />} />
               <Route path='/course/:id' element={<VideoDetails />} />
+              <Route path='/our-courses' element={<OurCourses />} />
               <Route path='/successfully' element={<Successfully />} />
             </Route>
             <Route path='/p' element={<LayoutProfile />} >

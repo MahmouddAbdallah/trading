@@ -1,9 +1,10 @@
 import Instrutors from "./Instrutors"
-import { ArrowCircle } from "./icons"
+import { ArrowCircle, ArrowLeftIcon } from "./icons"
 import laba from '../assets/laba.png'
 import { useEffect, useState } from "react"
 import axios from "axios"
 import Course from "./Course"
+import { Link } from "react-router-dom"
 
 
 const HomePackAndInstrutors = () => {
@@ -39,11 +40,16 @@ const HomePackAndInstrutors = () => {
     return (
         <div className="p-container space-y-10 lg:space-y-20">
             <div>
-                <div className='text-center gap-5 relative'>
+                <div className='text-center flex items-center justify-center gap-5 relative'>
                     <h3 className='font-semibold text-4xl md:text-5xl lg:text-5xl text-[#285D89] '>
                         Our Courses
                     </h3>
-                    <ArrowCircle className={'absolute right-0 -top-7 w-40 h-40 hidden lg:block'} />
+                    <div className={'absolute right-0  hidden lg:block'} >
+                        <Link to={'/our-courses'} className="flex gap-3 text-[#488FB0] font-semibold text-xl">
+                            <span className="">view all courses</span>
+                            <ArrowLeftIcon className={'h-8 w-8 rotate-[120deg]'} />
+                        </Link>
+                    </div>
                     <img src={laba} className={'absolute left-0 -top-10 w-32 h-32 hidden lg:block'} />
                 </div>
                 <div className="relative lg:py-5">
@@ -61,6 +67,12 @@ const HomePackAndInstrutors = () => {
                             })
                         }
                     </div>
+                </div>
+                <div className="flex lg:hidden justify-center mt-10">
+                    <Link to={'/our-courses'} className="flex items-center gap-3 text-[#488FB0] font-semibold text-sm">
+                        <span className="">view all courses</span>
+                        <ArrowLeftIcon className={'h-6 w-6 rotate-[180deg]'} />
+                    </Link>
                 </div>
             </div>
             <div>
