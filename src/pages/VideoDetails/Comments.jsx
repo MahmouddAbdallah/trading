@@ -2,14 +2,18 @@ import { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
 import Stars from '../../components/Stars';
+import AddComment from './AddComment';
 
 const Comments = ({ courseId }) => {
     const [comments, setComments] = useState(null);
+    const [open, setOpen] = useState(false)
+
     const fetchComments = useCallback(
         async () => {
             try {
                 const { data } = await axios.get(`/api/Courses/GetCourseCommentsAndRates?courseId=${courseId}`);
                 setComments(data);
+                console.log({ comments: data });
             } catch (error) {
                 console.error(error.message);
             }
@@ -18,6 +22,10 @@ const Comments = ({ courseId }) => {
     useEffect(() => {
         fetchComments()
     }, [fetchComments])
+
+
+
+
     return (
         <div>
             <div>
@@ -25,7 +33,7 @@ const Comments = ({ courseId }) => {
                     Comments
                 </h4>
             </div>
-            <div className='mt-5 space-y-5'>
+            <div className='mt-5 max-h-80 space-y-5'>
                 {
                     comments?.map(comment => {
                         const customer = comment.customerName?.split('')
@@ -61,6 +69,21 @@ const Comments = ({ courseId }) => {
                             </div>
                         )
                     })
+                }
+            </div>
+            <button
+                onClick={() => {
+                    setOpen(true)
+                    document.body.style.overflowY = 'hidden'
+                }}
+                className='w-full sm:max-w-[365px] text-blue rounded-md border-2 border-[#428BAD] mt-5 py-2 font-medium '>
+                Add review
+            </button>
+            <div>
+                {
+                    open
+                    &&
+                    <AddComment setOpen={setOpen} />
                 }
             </div>
         </div>
