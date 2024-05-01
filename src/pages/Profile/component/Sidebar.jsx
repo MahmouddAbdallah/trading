@@ -49,15 +49,15 @@ const Sidebar = ({ open, setOpen }) => {
         },
         {
             id: 6,
-            name: "Holding Tank",
+            name: "My team",
             icon: <HoldingIcon className={` 
-            w-5 h-5 fill-2
-            ${pathname?.includes('holding-tank')
+            w-6 h-6 fill-2
+            ${pathname?.includes('my-team')
                     ? 'fill-white'
                     : 'fill-[#003966]'
                 }`}
             />,
-            href: "holding-tank",
+            href: "my-team",
         },
         {
             id: 7,

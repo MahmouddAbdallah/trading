@@ -13,7 +13,6 @@ const Comments = ({ courseId }) => {
             try {
                 const { data } = await axios.get(`/api/Courses/GetCourseCommentsAndRates?courseId=${courseId}`);
                 setComments(data);
-                console.log({ comments: data });
             } catch (error) {
                 console.error(error.message);
             }

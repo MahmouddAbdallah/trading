@@ -21,14 +21,13 @@ const AddComment = ({ setOpen }) => {
     const handleComment = handleSubmit(async (formData) => {
         try {
             setLoading(true)
-            const { data } = await axios.post('/api/Courses/AddComment',
+            await axios.post('/api/Courses/AddComment',
                 {
                     userId: user?.customerAttributeId,
                     courseId: id,
                     rate: rate,
                     comment: formData.comment
                 })
-            console.log(data);
             reset();
             setLoading(false)
         } catch (error) {

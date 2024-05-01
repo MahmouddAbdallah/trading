@@ -6,7 +6,7 @@ import { UseAppContext } from "../../context/appContext";
 const HoldingTank = () => {
     const [tanks, setTanks] = useState([]);
     const { user } = UseAppContext()
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
     const getHoldingTank = useCallback(
         async () => {
             try {
@@ -21,12 +21,13 @@ const HoldingTank = () => {
     useEffect(() => {
         getHoldingTank()
     }, [getHoldingTank])
+
     return (
         <div>
             <div className="px-5 lg:pr-32">
                 <div className="mb-10">
                     <h4 className="font-bold text-[#546E7A] text-lg tracking-[2px]">
-                        Holding Tank
+                        My team
                     </h4>
                 </div>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -36,7 +37,7 @@ const HoldingTank = () => {
                                 <th className="py-3 px-5 lg:px-8">Name</th>
                                 <th className="py-3 px-5 lg:px-8">Email</th>
                                 <th className="py-3 px-5 lg:px-8">Back-office Id</th>
-                                <th className="py-3 px-5 lg:px-8"></th>
+                                <th className="py-3 px-5 lg:px-8">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,17 +65,17 @@ const HoldingTank = () => {
                                         <td className="px-5 lg:px-8 py-3 ">
                                             <button
                                                 disabled={item.status == 'Active' && !item.hasParent ? false : true}
-                                                onClick={() => { setOpen(!open) }}
+                                                // onClick={() => { setOpen(!open) }}
                                                 className={`p-3 ${item.status == 'Active' && !item.hasParent ? 'bg-[#0AF859]' : "bg-red-500"} text-white rounded-md`}>
                                                 {item.status}
                                             </button>
-                                            {open &&
+                                            {/* {open &&
                                                 <div className="fixed bg-black/10 top-0 left-0 h-svh w-svw z-50 flex justify-center">
                                                     <div className="w-full md:w-[500px] bg-white h-80 rounded-md">
 
                                                     </div>
                                                 </div>
-                                            }
+                                            } */}
                                         </td>
                                     </tr>
                                 )

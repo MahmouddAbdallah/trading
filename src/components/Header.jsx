@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import HeaderLeft from "./HeaderLeft/HeaderLeft"
+import { UseAppContext } from "../context/appContext"
 
 const Header = () => {
+    const { user } = UseAppContext()
+
     return (
         <header className="p-container overflow-hidden lg:pb-60">
             <div className="flex flex-col lg:grid grid-cols-12">
@@ -17,9 +20,11 @@ const Header = () => {
                             An Egyptian academy with its administrative headquarters in Dokki, Cairo
                         </p>
                         <div className="py-2">
-                            <Link to={'/sign-in'} className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md shadowBtn'>
-                                Log In
-                            </Link>
+                            {!user ?
+                                <Link to={'/sign-in'} className='btn-blue-gradient px-10 py-2 rounded-full text-white text-sm lg:text-base shadow-md shadowBtn'>
+                                    Log In
+                                </Link> : ""
+                            }
                         </div>
                     </div>
                 </div>

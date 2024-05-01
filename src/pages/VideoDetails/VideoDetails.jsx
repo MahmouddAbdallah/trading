@@ -17,7 +17,6 @@ const VideoDetails = () => {
             try {
                 setLoading(true)
                 const { data } = await axios.get(`/api/Courses/GetCourseDetails?courseId=${id}&userId=${user?.customerAttributeId}`)
-                console.log(data);
                 setCourse(data);
                 setLoading(false)
             } catch (error) {

@@ -5,7 +5,6 @@ import axios from 'axios'
 import Loading from './components/Loading'
 import AppProvider from './context/appContext'
 import { checkExpiration, setExpirationTime } from './lib/clearLocalStorage'
-import VideoDetails from './pages/VideoDetails/VideoDetails'
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const ContactUs = lazy(() => import('./pages/ContactUs/ContactUs'));
@@ -28,6 +27,7 @@ const CartPackage = lazy(() => import('./pages/Package/pages/CartPackage'));
 const CheckoutPackage = lazy(() => import('./pages/Package/pages/CheckoutPackage'));
 const PaymentPackage = lazy(() => import('./pages/Package/pages/PaymentPackage'));
 const Successfully = lazy(() => import('./pages/Successfully'));
+const VideoDetails = lazy(() => import('./pages/VideoDetails/VideoDetails'));
 const OurCourses = lazy(() => import('./pages/OurCourses'));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
@@ -61,7 +61,7 @@ function App() {
             <Route path='/p' element={<LayoutProfile />} >
               <Route path='/p/dashboard' element={<Dashboard />} />
               <Route path='/p/transfer' element={<Transfer />} />
-              <Route path='/p/holding-tank' element={<HoldingTank />} />
+              <Route path='/p/my-team' element={<HoldingTank />} />
               <Route path='/p/wallet' element={<Wallet />} />
               <Route path='/p/business' element={<Bussiness />} />
               <Route path='/p/reports' element={<Reports />} />
