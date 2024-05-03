@@ -103,8 +103,8 @@ const Sidebar = ({ open, setOpen }) => {
     ]
 
     return (
-        <div ref={refSidebar} className={`p-4 flex flex-col h-svh ${open.bool ? style.leftToRight : style.rightToLeft} shadow-lg shadow-black/30 bg-[#EBEFF3] fixed z-50 lg:sticky top-0 `}>
-            <div className='w-full flex justify-center'  >
+        <div ref={refSidebar} className={`py-2 px-1 flex flex-col h-svh ${open.bool ? style.leftToRight : style.rightToLeft} shadow-lg shadow-black/30 bg-[#EBEFF3] fixed z-50 lg:sticky top-0 `}>
+            <div className='w-full flex justify-center h-[120px] py-2'  >
                 <Link to={'/'}>
                     <img
                         className='w-[120px] h-[120px] brightness-105'
@@ -113,38 +113,40 @@ const Sidebar = ({ open, setOpen }) => {
                     />
                 </Link>
             </div>
-            <div className='flex-1 flex items-center'>
-                <div className='space-y-5'>
-                    {
-                        items.map(item => {
-                            return (
-                                <div key={item.href}>
-                                    <div>
-                                        <Link
-                                            to={item.href}
-                                        >
-                                            <div className={` flex items-center justify-between gap-5 py-4 shadow-lg px-8 rounded-md ${style.sidebarBtnShadow} ${item.href.includes(pathname.split("/")[2]) && 'bg-[#428BAD] text-white'}`
-                                            }>
-                                                <div className='flex gap-4'>
-                                                    {item.icon}
-                                                    <span className={clsx(
-                                                        'text-[#003966] font-bold whitespace-nowrap block',
-                                                        { 'text-white': item.href.includes(pathname.split("/")[2]) }
-                                                    )}>
-                                                        {item.name}
-                                                    </span>
+            <div className='overflow-y-auto py-5 mt-5 hide-scrollbar px-5'>
+                <div className='flex-1 flex items-center'>
+                    <div className='space-y-5'>
+                        {
+                            items.map(item => {
+                                return (
+                                    <div key={item.href}>
+                                        <div>
+                                            <Link
+                                                to={item.href}
+                                            >
+                                                <div className={` flex items-center justify-between gap-5 py-4 shadow-lg px-8 rounded-md ${style.sidebarBtnShadow} ${item.href.includes(pathname.split("/")[2]) && 'bg-[#428BAD] text-white'}`
+                                                }>
+                                                    <div className='flex gap-4'>
+                                                        {item.icon}
+                                                        <span className={clsx(
+                                                            'text-[#003966] font-bold whitespace-nowrap block',
+                                                            { 'text-white': item.href.includes(pathname.split("/")[2]) }
+                                                        )}>
+                                                            {item.name}
+                                                        </span>
+                                                    </div>
+                                                    <ArrowIcon className={clsx(
+                                                        'stroke-[#003966]',
+                                                        { 'stroke-white': item.href.includes(pathname.split("/")[2]) }
+                                                    )} />
                                                 </div>
-                                                <ArrowIcon className={clsx(
-                                                    'stroke-[#003966]',
-                                                    { 'stroke-white': item.href.includes(pathname.split("/")[2]) }
-                                                )} />
-                                            </div>
-                                        </Link>
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
