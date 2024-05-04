@@ -8,7 +8,7 @@ const Instrutors = ({ data }) => {
                 <div>
                     <div className='p-3'>
                         <img
-                            className='w-full lg:max-h-[250px] xl:max-h-[290px] rounded-lg'
+                            className='w-full max-h-[250px] xl:max-h-[290px] rounded-lg'
                             src={data?.instructorPhoto}
                             alt=""
                         />
