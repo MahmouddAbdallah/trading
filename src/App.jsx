@@ -33,11 +33,11 @@ const OurCourses = lazy(() => import('./pages/OurCourses'));
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 function App() {
 
-  // useEffect(() => {
-  //   setExpirationTime();
-  //   const intervalId = setInterval(checkExpiration, 1000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  useEffect(() => {
+    setExpirationTime();
+    const intervalId = setInterval(checkExpiration, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <Suspense fallback={<Loading />}>
       <AppProvider>
