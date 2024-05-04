@@ -26,7 +26,7 @@ const HomePackAndInstrutors = () => {
     const [courses, setcourses] = useState([1, 2, 3, 4, 5, 6])
     const GetHomeCourses = async () => {
         try {
-            const { data } = await axios.get('/api/Courses/GetHomeCourses')
+            const { data } = await axios.get('/api/Courses/GetHomeCourses?showInHome=true');
             setcourses(typeof data == 'string' ? [1, 2, 3, 4, 5, 6] : data)
         } catch (error) {
             // toast.error(error?.response?.data || "Can not get instrutors")
@@ -53,7 +53,7 @@ const HomePackAndInstrutors = () => {
                     <img src={laba} className={'absolute left-0 -top-10 w-32 h-32 hidden lg:block'} />
                 </div>
                 <div className="relative lg:py-5">
-                    <div className='grid grid-cols-12 lg:gap-24 pt-5 lg:pt-10'>
+                    <div className='grid grid-cols-12 lg:gap-16 xl:gap-24 pt-5 lg:pt-10'>
                         {
                             courses?.map((item, i) => {
                                 return (
@@ -83,7 +83,7 @@ const HomePackAndInstrutors = () => {
                     <ArrowCircle className={'absolute left-0 -top-16 w-40 h-40 rotate-180 hidden lg:block'} />
                 </div>
                 <div className="relative lg:py-5">
-                    <div className='grid grid-cols-12 lg:gap-24 pt-5 lg:pt-10'>
+                    <div className='grid grid-cols-12 lg:gap-16 xl:gap-24 pt-5 lg:pt-10'>
                         {
                             instrutors?.map((item, i) => {
                                 return (
