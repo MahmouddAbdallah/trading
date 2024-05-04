@@ -2,7 +2,8 @@ import axios from "axios"
 import { useCallback, useEffect } from "react"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
+import { UseAppContext } from "../../context/appContext"
 import Comments from "./Comments"
 import Stars from "../../components/Stars"
 
@@ -10,9 +11,12 @@ const VideoDetails = () => {
     const [course, setCourse] = useState(null)
     const [loading, setLoading] = useState(false)
     const { id } = useParams()
+    const { user } = UseAppContext()
+    const navigate = useNavigate()
     const fetchCourse = useCallback(
         async () => {
             try {
+
                 setLoading(true)
                 const { data } = await axios.get(`/api/Courses/GetCourseDetails?courseId=${id}`)
                 setCourse(data);
@@ -105,7 +109,13 @@ const VideoDetails = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <button className="w-full py-3 rounded-full btn-blue-gradient card-services text-white">
+                            <button
+                                onClick={() => {
+                                    if (!user) {
+                                        navigate('/sign-in')
+                                    }
+                                }}
+                                className="w-full py-3 rounded-full btn-blue-gradient card-services text-white">
                                 Purchase Course
                             </button>
                         </div>
