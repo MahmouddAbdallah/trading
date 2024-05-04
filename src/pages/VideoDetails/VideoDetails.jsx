@@ -2,8 +2,7 @@ import axios from "axios"
 import { useCallback, useEffect } from "react"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-import { Navigate, useParams } from "react-router-dom"
-import { UseAppContext } from "../../context/appContext"
+import { useParams } from "react-router-dom"
 import Comments from "./Comments"
 import Stars from "../../components/Stars"
 
@@ -11,12 +10,11 @@ const VideoDetails = () => {
     const [course, setCourse] = useState(null)
     const [loading, setLoading] = useState(false)
     const { id } = useParams()
-    const { user } = UseAppContext()
     const fetchCourse = useCallback(
         async () => {
             try {
                 setLoading(true)
-                const { data } = await axios.get(`/api/Courses/GetCourseDetails?courseId=${id}&userId=${user?.customerAttributeId}`)
+                const { data } = await axios.get(`/api/Courses/GetCourseDetails?courseId=${id}`)
                 setCourse(data);
                 setLoading(false)
             } catch (error) {
@@ -24,14 +22,12 @@ const VideoDetails = () => {
                 setLoading(false)
                 console.error(error);
             }
-        }, [id, user]
+        }, [id]
     )
     useEffect(() => {
         fetchCourse()
     }, [fetchCourse])
-    if (!user) {
-        return <Navigate to={'/sign-in'} />
-    }
+    // 
     return (
         <div>
             <div className="p-container py-10">
