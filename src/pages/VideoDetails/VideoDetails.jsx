@@ -113,6 +113,8 @@ const VideoDetails = () => {
                                 onClick={() => {
                                     if (!user) {
                                         navigate('/sign-in')
+                                    } else {
+                                        navigate('/package')
                                     }
                                 }}
                                 className="w-full py-3 rounded-full btn-blue-gradient card-services text-white">
