@@ -1,5 +1,5 @@
 import { UseAppContext } from "../../../context/appContext"
-import Package from "../component/Package"
+import Package from '../../../components/Package'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 const PreviewPackage = () => {
